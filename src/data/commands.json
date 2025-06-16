@@ -1,0 +1,142 @@
+[
+  {
+    "id": "lightning_stick",
+    "name": "Lightning Stick",
+    "description": "A stick that can summon lightning when you hit an entity!",
+    "versions": {"1.21": true},
+    "blocks": [
+      {
+        "type": "impulse",
+        "row": 1,
+        "command": "give @p stick[minecraft:custom_data={light:1},minecraft:item_name=\"Lightning Stick\"]"
+      },
+      {
+        "type": "impulse",
+        "row": 2,
+        "command": "scoreboard objectives add lightningDamage minecraft.custom:minecraft.damage_dealt"
+      },
+      {
+        "type": "repeat",
+        "row": 3,
+        "command": "execute as @a at @s if entity @s[nbt={SelectedItem:{id:\"minecraft:stick\",components:{\"minecraft:custom_data\":{light:1}}}}] if score @s lightningDamage matches 1.. run execute at @e[nbt={HurtTime:10s},distance=..5,sort=nearest,limit=1] run summon minecraft:lightning_bolt ~ ~ ~"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "conditional": true,
+        "command": "execute as @a at @s if score @s lightningDamage matches 1.. run scoreboard players reset @a"
+      }
+    ],
+    "video": "https://www.youtube.com/embed/meO55Go6HWM"
+  },
+  {
+    "id": "lightning_bow",
+    "name": "Lightning Bow",
+    "description": "A bow that can shoot lightning arrows!",
+    "versions": {"1.21": true},
+    "blocks": [
+      {
+        "type": "impulse",
+        "row": 1,
+        "command": "give @p bow[minecraft:custom_data={light:1},minecraft:item_name=\"Lightning Bow\"]"
+      },
+      {
+        "type": "impulse",
+        "row": 2,
+        "command": "scoreboard objectives add bow minecraft.used:minecraft.bow"
+      },
+      {
+        "type": "repeat",
+        "row": 3,
+        "command": "execute as @a at @s if entity @s[nbt={SelectedItem:{id:\"minecraft:bow\",components:{\"minecraft:custom_data\":{light:1}}}}] if score @s bow matches 1.. run tag @e[type=arrow,distance=..2,sort=nearest,limit=1] add lightningArrow"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @e[tag=lightningArrow,nbt={inGround:1b}] at @s run summon minecraft:lightning_bolt ~ ~ ~"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @e[tag=lightningArrow,nbt={inGround:1b}] at @s run kill @s"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @a at @s if score @s bow matches 1.. run scoreboard players reset @s bow"
+      }
+    ],
+    "video": "https://www.youtube.com/embed/i2LHiRowNAU"
+  },
+  {
+    "id": "test_multichain",
+    "name": "Test Multi-Chain Layout",
+    "description": "A test layout with 6 command blocks across 2 rows.",
+    "versions": {
+      "1.8": false,
+      "1.9": false,
+      "1.19": true,
+      "1.20": true
+    },
+    "blocks": [
+      {
+        "type": "impulse",
+        "facing": "north",
+        "row": 1,
+        "conditional": false,
+        "command": "say Start"
+      },
+      {
+        "type": "chain",
+        "facing": "north",
+        "row": 1,
+        "conditional": false,
+        "command": "say Step 1"
+      },
+      {
+        "type": "chain",
+        "facing": "north",
+        "row": 1,
+        "conditional": true,
+        "command": "say Step 2"
+      },
+      {
+        "type": "chain",
+        "facing": "north",
+        "row": 1,
+        "conditional": true,
+        "command": "say Step 3"
+      },
+      {
+        "type": "repeat",
+        "facing": "north",
+        "row": 2,
+        "conditional": true,
+        "command": "say Step 4"
+      },
+      {
+        "type": "chain",
+        "facing": "north",
+        "row": 2,
+        "conditional": false,
+        "command": "say Done"
+      }
+    ],
+    "chainRows": 2,
+    "video": "https://www.youtube.com/embed/VIDEO_ID"
+  },
+  {
+    "id": "id",
+    "name": "name",
+    "description": "desc",
+    "versions": {"1.21": true},
+    "blocks": [
+      {
+        "type": "impulse",
+        "row": 1,
+        "command": "command"
+      }
+    ],
+    "video": "https://www.youtube.com/embed/id"
+  }
+]
