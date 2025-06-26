@@ -135,6 +135,17 @@
         "type": "impulse",
         "row": 1,
         "command": "command"
+      },
+      {
+        "type": "repeat",
+        "row": 2,
+        "command": "command 2"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "conditional": true,
+        "command": "command 3"
       }
     ],
     "video": "https://www.youtube.com/embed/id"

@@ -183,3 +183,71 @@
   border: none;
   border-radius: 1rem;
 }
+
+.oneCommandSection {
+  margin-top: 2rem;
+  background-color: #1f2937;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  text-align: center;
+}
+
+.lazyText {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: #facc15;
+  font-weight: bold;
+}
+
+.oneCommandButton {
+  background-color: #93c5fd;
+  color: black;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.oneCommandButton:hover {
+  background-color: #60a5fa;
+}
+
+.oneCommandBox {
+  margin-top: 1rem;
+  text-align: left;
+}
+
+.warning {
+  color: #f87171;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.commandTextarea {
+  width: 100%;
+  height: 200px;
+  background-color: #111827;
+  color: #d1fae5;
+  border: 1px solid #4b5563;
+  border-radius: 0.375rem;
+  padding: 0.5rem;
+  font-family: monospace;
+  font-size: 0.9rem;
+  resize: vertical;
+}
+
+.copiedMessage {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: #facc15;
+  font-weight: bold;
+  animation: fadeOut 1s ease-in-out forwards;
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}

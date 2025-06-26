@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import commands from '../data/commands.json';
 import blockImages from '../utils/blockImages';
+import oneCommand from '../utils/oneCommand';
 import styles from '../styles/commandPage.module.css';
 
 export default function CommandPage() {
@@ -9,6 +10,7 @@ export default function CommandPage() {
   const cmd = commands.find(c => c.id === id);
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [copiedIndex, setCopiedIndex] = useState(null);
+  const [showOneCommand, setShowOneCommand] = useState(false);
 
   if (!cmd) return <p>Command not found.</p>;
 
@@ -131,6 +133,40 @@ export default function CommandPage() {
               allowFullScreen
             ></iframe>
           </div>
+        </div>
+
+        {/*one command*/}
+        <div className={styles.oneCommandSection}>
+          <p className={styles.lazyText}>Too lazy to copy and paste each command?</p>
+          <button
+            className={styles.oneCommandButton}
+            onClick={() => setShowOneCommand(!showOneCommand)}
+          >
+            {showOneCommand ? 'Hide One Command' : 'Generate One Command'}
+          </button>
+
+          {showOneCommand && (
+            <div className={styles.oneCommandBox}>
+              <p className={styles.warning}>
+                ⚠️ This command will place command blocks facing north. <br />
+                ⚠️ Make a backup before using it in your world. <br />
+                Please double check each command block to ensure it is correct before running!
+              </p>
+              <textarea
+                className={styles.commandTextarea}
+                readOnly
+                value={oneCommand(cmd)}
+                onClick={(e) => {
+                  navigator.clipboard.writeText(e.target.value);
+                  setCopiedIndex(-1);
+                  setTimeout(() => setCopiedIndex(null), 1000);
+                }}
+              />
+              {copiedIndex === -1 && (
+                <p className={styles.copiedMessage}>Copied one command to clipboard!</p>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>
