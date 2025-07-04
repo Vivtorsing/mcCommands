@@ -1,5 +1,39 @@
 [
   {
+    "id": "happy_ghast_fireball",
+    "name": "Happy Ghast Shoot Fireballs",
+    "description": "Make It Possible For Happy Ghasts to Shoot Fireballs With Snowballs",
+    "versions": {"1.21.6+": true},
+    "blocks": [
+      {
+        "type": "repeat",
+        "row": 1,
+        "command": "execute as @a at @s if entity @e[type=minecraft:happy_ghast,distance=..4] if entity @e[type=snowball,distance=2..4] run summon fireball ^ ^ ^1"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "execute as @a at @s if entity @e[type=minecraft:happy_ghast,distance=..4] if entity @e[type=fireball,distance=..8] if entity @e[type=snowball,distance=2..4] run data modify entity @e[type=fireball,distance=..8,limit=1] Motion set from entity @e[type=snowball,distance=2..4,limit=1] Motion"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "execute as @a at @s if entity @e[type=minecraft:happy_ghast,distance=..4] if entity @e[type=snowball,distance=2..4] run playsound minecraft:entity.ghast.warn ambient @a ~ ~ ~"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "execute as @a at @s if entity @e[type=minecraft:happy_ghast,distance=..4] if entity @e[type=snowball,distance=2..4] run playsound minecraft:entity.ghast.shoot ambient @a ~ ~ ~"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "execute as @a at @s if entity @e[type=minecraft:happy_ghast,distance=..4] if entity @e[type=snowball,distance=2..4] run kill @e[type=snowball,distance=2..4,limit=1]"
+      }
+    ],
+    "video": "https://www.youtube.com/embed/LDFFB_If4iQ"
+  },
+  {
     "id": "lightning_stick",
     "name": "Lightning Stick",
     "description": "A stick that can summon lightning when you hit an entity!",
