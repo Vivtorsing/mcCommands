@@ -1,5 +1,94 @@
 [
   {
+    "id": "pollen",
+    "name": "Pollen",
+    "description": "Add pollen to Minecraft so you can enjoy watery eyes without leaving the house!",
+    "versions": {"1.21.8+": true},
+    "blocks": [
+      {
+        "type": "impulse",
+        "row": 1,
+        "command": "scoreboard objectives add pollen dummy"
+      },
+      {
+        "type": "impulse",
+        "row": 2,
+        "command": "scoreboard objectives add pollenLeaves dummy"
+      },
+      {
+        "type": "impulse",
+        "row": 3,
+        "command": "scoreboard objectives add pollenShortGrass dummy"
+      },
+      {
+        "type": "impulse",
+        "row": 4,
+        "command": "scoreboard objectives add pollenTallGrass dummy"
+      },
+      {
+        "type": "impulse",
+        "row": 5,
+        "command": "scoreboard objectives add pollenLeafLitter dummy"
+      },
+      {
+        "type": "repeat",
+        "row": 6,
+        "command": "execute as @a at @s store success score @s pollenLeaves run clone ~-5 ~-5 ~-5 ~5 ~5 ~5 ~-5 ~-5 ~-5 filtered #minecraft:leaves force"
+      },
+      {
+        "type": "chain",
+        "row": 6,
+        "command": "execute as @a at @s store success score @s pollenShortGrass run clone ~-5 ~-5 ~-5 ~5 ~5 ~5 ~-5 ~-5 ~-5 filtered minecraft:short_grass force"
+      },
+      {
+        "type": "chain",
+        "row": 6,
+        "command": "execute as @a at @s store success score @s pollenTallGrass run clone ~-5 ~-5 ~-5 ~5 ~5 ~5 ~-5 ~-5 ~-5 filtered minecraft:tall_grass force"
+      },
+      {
+        "type": "chain",
+        "row": 6,
+        "command": "execute as @a at @s store success score @s pollenLeafLitter run clone ~-5 ~-5 ~-5 ~5 ~5 ~5 ~-5 ~-5 ~-5 filtered minecraft:leaf_litter force"
+      },
+      {
+        "type": "repeat",
+        "row": 7,
+        "command": "execute as @a at @s if score @s pollenLeaves matches 1 run scoreboard players set @s pollen 1"
+      },
+      {
+        "type": "chain",
+        "row": 7,
+        "command": "execute as @a at @s if score @s pollenShortGrass matches 1 run scoreboard players set @s pollen 1"
+      },
+      {
+        "type": "chain",
+        "row": 7,
+        "command": "execute as @a at @s if score @s pollenTallGrass matches 1 run scoreboard players set @s pollen 1"
+      },
+      {
+        "type": "chain",
+        "row": 7,
+        "command": "execute as @a at @s if score @s pollenLeafLitter matches 1 run scoreboard players set @s pollen 1"
+      },
+      {
+        "type": "chain",
+        "row": 7,
+        "command": "execute as @a at @s if score @s pollenLeaves matches 0 if score @s pollenShortGrass matches 0 if score @s pollenTallGrass matches 0 if score @s pollenLeafLitter matches 0 run scoreboard players set @s pollen 0"
+      },
+      {
+        "type": "repeat",
+        "row": 8,
+        "command": "execute as @a at @s if score @s pollen matches 1 run damage @s 0.5 minecraft:generic"
+      },
+      {
+        "type": "chain",
+        "row": 8,
+        "command": "execute as @a at @s if score @s pollen matches 1 run particle minecraft:falling_water ~ ~2 ~ .75 .75 .75 0 250 normal"
+      }
+    ],
+    "video": "https://www.youtube.com/embed/kMUPnLDkWhU"
+  },
+  {
     "id": "happy_ghast_fireball",
     "name": "Happy Ghast Shoot Fireballs",
     "description": "Make It Possible For Happy Ghasts to Shoot Fireballs With Snowballs",
@@ -31,7 +120,7 @@
         "command": "execute as @a at @s if entity @e[type=minecraft:happy_ghast,distance=..4] if entity @e[type=snowball,distance=2..4] run kill @e[type=snowball,distance=2..4,limit=1]"
       }
     ],
-    "video": "https://www.youtube.com/embed/LDFFB_If4iQ"
+    "video": "https://www.youtube.com/embed/LDFFB_lf4iQ"
   },
   {
     "id": "lightning_stick",
