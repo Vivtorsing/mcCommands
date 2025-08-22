@@ -1,5 +1,49 @@
 [
   {
+    "id": "instant_tree_chop",
+    "name": "Instant Tree Chop",
+    "description": "A command to chop down trees instantly!",
+    "versions": {"1.21.8+": true},
+    "blocks": [
+      {
+        "type": "impulse",
+        "row": 1,
+        "command": "scoreboard objectives add chop minecraft.used:minecraft.diamond_axe"
+      },
+      {
+        "type": "impulse",
+        "row": 2,
+        "command": "give @p minecraft:diamond_axe[minecraft:custom_data={Chop:1}]"
+      },
+      {
+        "type": "repeat",
+        "row": 3,
+        "command": "execute as @a at @s[nbt={SelectedItem:{id:\"minecraft:diamond_axe\",components:{\"minecraft:custom_data\":{Chop:1}}}},scores={chop=1..}] at @e[type=item,distance=..8,nbt={Age:0s},sort=nearest,limit=1] run summon minecraft:armor_stand ~ ~ ~ {NoGravity:1,Tags:[\"Treelocation\"]}"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @e[tag=Treelocation] at @s if block ~ ~1 ~ #minecraft:completes_find_tree_tutorial run tp @s ~ ~1 ~"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @e[tag=Treelocation] at @s run fill ~2 ~ ~2 ~-2 ~ ~-2 air replace #minecraft:completes_find_tree_tutorial destroy"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @e[tag=Treelocation] at @s unless block ~ ~1 ~ #minecraft:completes_find_tree_tutorial run kill @s"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @a at @s[nbt={SelectedItem:{id:\"minecraft:diamond_axe\",components:{\"minecraft:custom_dat\":{Chop:1}}}},scores={chop=1..}] run scoreboard players reset @s chop"
+      }
+    ],
+    "video": "https://www.youtube.com/embed/GhEcJ7XUIF4"
+  },
+  {
     "id": "pollen",
     "name": "Pollen",
     "description": "Add pollen to Minecraft so you can enjoy watery eyes without leaving the house!",
