@@ -1,5 +1,59 @@
 [
   {
+    "id": "mosquito",
+    "name": "Mosquito",
+    "description": "Add mosquitoes to your world to troll your friends!",
+    "versions": {"1.21.8+": true},
+    "blocks": [
+      {
+        "type": "impulse",
+        "row": 1,
+        "command": "scoreboard objectives add timer dummy"
+      },
+      {
+        "type": "impulse",
+        "row": 2,
+        "command": "give @p minecraft:vex_spawn_egg[minecraft:entity_data={id:\"minecraft:vex\",Tags:[\"mosq\"],attributes:[{id:\"minecraft:scale\",base:0}],Silent:1b,life_ticks:1200,active_effects:[{id:\"minecraft:invisibility\",amplifiler:1,duration:-1,show_particles:0b}]}]"
+      },
+      {
+        "type": "repeat",
+        "row": 3,
+        "command": "execute as @e[tag=mosq] at @s unless entity @e[tag=mosqBlock,distance=..0.25] run summon minecraft:block_display ~-.03 ~ ~-.03 {Tags:[\"mosqBlock\"],transformation:{left_rotation:[0f,0f,0f,1f],right_rotation:[0f,0f,0f,1f],translation:[0f,0f,0f],scale:[0.0625f,0.0625f,0.0625f]},block_state:{Name:\"minecraft:gray_concrete\"}}"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @e[tag=mosqBlock] at @s unless entity @e[tag=mosq,distance=..0.25] run kill @s"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @e[tag=mosq] at @s if entity @e[type=minecraft:player,distance=..2] run playsound minecraft:entity.bee.loop_aggressive ambient @a ~ ~ ~ .5 2"
+      },
+      {
+        "type": "repeat",
+        "row": 4,
+        "command": "execute as @a at @s if biome ~ ~ ~ minecraft:plains run scoreboard players add @s timer 1"
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "command": "execute as @a at @s if score @s timer matches 20 run execute store result score @s timer run random value 21..25"
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "command": "execute as @a at @s if score @s timer matches 21 run summon vex ~ ~5 ~ {Tags:[\"mosq\"],attributes:[{id:\"minecraft:scale\",base:0}],Silent:1b,life_ticks:1200,active_effects:[{id:\"minecraft:invisibility\",amplifiler:1,duration:-1,show_particles:0b}]}"
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "command": "execute as @a at @s if score @s timer matches 20.. run scoreboard players set @s timer 0"
+      }
+    ],
+    "video": "https://www.youtube.com/embed/iZ9GwhIYt8o"
+  },
+  {
     "id": "instant_tree_chop",
     "name": "Instant Tree Chop",
     "description": "A command to chop down trees instantly!",
