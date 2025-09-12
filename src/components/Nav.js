@@ -9,6 +9,7 @@ export default function Nav() {
       </div>
       <div className={styles.navRight}>
         <Link to="/" className={styles.navLink}>Home</Link>
+        <Link to="/faq" className={styles.navLink}>FAQ</Link>
       </div>
     </nav>
   );

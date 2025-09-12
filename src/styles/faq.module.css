@@ -1,0 +1,115 @@
+.background {
+  padding: 2rem;
+  color: white;
+  text-align: center;
+  background-color: #1e1f23;
+  font-family: 'Quicksand', sans-serif;
+  min-height: 100vh;
+}
+
+.faqPage {
+  max-width: 700px;
+  margin: 2rem auto;
+  color: white;
+  font-family: "Nunito", sans-serif;
+}
+
+.faqTitle {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #f9a8d4;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.faqDesc {
+    font-size: 1rem;
+  color: #cbd5e1;
+  margin-bottom: 2rem;
+}
+
+.faqItem {
+  margin-bottom: 1.25rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  background: #2c2f33;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.faqItem:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.4);
+}
+
+.faqQuestion {
+  width: 100%;
+  text-align: left;
+  padding: 1rem 1.25rem;
+  font-size: 1.15rem;
+  border: none;
+  background: linear-gradient(90deg, #ec4899, #8b5cf6);
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  transition: background 0.3s ease;
+}
+
+.faqQuestion:hover {
+  background: linear-gradient(90deg, #f472b6, #a78bfa);
+}
+
+.faqAnswer {
+  max-height: 0;
+  overflow: hidden;
+  background: #1f2937;
+  transition: max-height 0.4s ease, padding 0.3s ease;
+  padding: 0 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.faqOpen {
+  max-height: 600px;
+  padding: 1rem 1.25rem;
+}
+
+.faqAnswer p {
+  line-height: 1.6;
+  margin: 0.5rem 0;
+  color: #f3f4f6;
+}
+
+/* Interactive FAQ section inside */
+.faqInteractive {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.faqOptions button {
+  background: #ec4899;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.7rem 1rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  font-weight: 600;
+}
+
+.faqOptions button:hover {
+  background: #f472b6;
+  transform: scale(1.05);
+}
+
+.faqConclusion {
+  font-style: italic;
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  border-left: 3px solid #ec4899;
+  background: rgba(236, 72, 153, 0.1);
+  border-radius: 0.5rem;
+  color: #fbcfe8;
+}

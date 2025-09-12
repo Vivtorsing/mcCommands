@@ -3,6 +3,7 @@ import Home from './pages/Home';
 import CommandPage from './pages/CommandPage';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
+import FAQ from "./pages/FAQ";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/command/:id" element={<CommandPage />} />
+        <Route path="/faq" element={<FAQ />} />
       </Routes>
       <Footer />
     </HashRouter>

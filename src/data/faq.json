@@ -1,0 +1,71 @@
+{
+  "faq": [
+    {
+      "id": "q1",
+      "question": "Which game does this work on?",
+      "type": "static",
+      "answer": "These commands only work on Minecraft Java Edition."
+    },
+    {
+      "id": "q2",
+      "question": "The command is not working!",
+      "type": "interactive",
+      "start": "errorHelp",
+      "tree": [
+        {
+          "id": "errorHelp",
+          "text": "Is your error a syntax issue or a placement issue?",
+          "options": [
+            { "label": "Syntax error", "next": "syntaxFix" },
+            { "label": "Placement issue", "next": "placementFix" }
+          ]
+        },
+        {
+          "id": "syntaxFix",
+          "conclusion": "Double-check the command for typos, especially spaces and brackets."
+        },
+        {
+          "id": "placementFix",
+          "conclusion": "Make sure the command blocks are facing the right direction and powered correctly."
+        }
+      ]
+    },
+    {
+        "id": "test",
+        "question": "test",
+        "type": "interactive",
+        "start": "first",
+        "tree": [
+            {
+                "id": "first",
+                "text": "Is this working?",
+                "options": [
+                    {"label": "No?", "next": "firstNo"},
+                    {"label": "Yes?", "next": "firstYes"}
+                ]
+            },
+            {
+                "id": "firstNo",
+                "conclusion": "well then"
+            },
+            {
+                "id": "firstYes",
+                "text": "then maybe now?",
+                "options": [
+                    {"label": "No?", "next": "secondNo"},
+                    {"label": "Yes?", "next": "secondYes"}
+                ]
+            },
+            {
+                "id": "secondNo",
+                "conclusion": "well then"
+            },
+            {
+                "id": "secondYes",
+                "conclusion": "YAY"
+            }
+        ]
+
+    }
+  ]
+}
