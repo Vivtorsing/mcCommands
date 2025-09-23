@@ -1,0 +1,277 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap');
+
+.commandPageContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2rem;
+  background-color: #111827;
+  color: #fefefe;
+  font-family: 'Quicksand', sans-serif;
+  min-height: 100vh;
+}
+
+.commandLeft {
+  flex: 2;
+}
+
+.commandRight {
+  flex: 1;
+  position: sticky;
+  top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.commandTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #f9a8d4;
+  margin-bottom: 0.5rem;
+}
+
+.commandDesc {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: #e2e8f0;
+}
+
+.versionsContainer {
+  margin-top: 1rem;
+}
+
+.versionBadges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.versionBadge {
+  padding: 0.25rem 0.6rem;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.05);
+}
+
+.versionSupported {
+  background-color: #4ade80;
+  color: #064e3b;
+}
+
+.versionUnsupported {
+  background-color: #e5e7eb;
+  color: #6b7280;
+}
+
+.commandRowTitle {
+  margin-top: 2rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #f9a8d4;
+}
+
+.commandRow {
+  margin-bottom: 1.5rem;
+}
+
+.commandRowName {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #f472b6;
+}
+
+.commandLine {
+  background-color: #1f2937;
+  color: #74c8ff; /*a7f3d0*/
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
+  margin-bottom: 0.5rem;
+  font-family: monospace;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.commandLine:hover {
+  transform: translateX(4px);
+}
+
+.highlighted {
+  background-color: #facc15;
+  color: #111827;
+  font-weight: bold;
+}
+
+.blockType {
+  font-weight: bold;
+  margin-right: 0.25rem;
+}
+
+.impulse {
+  color: #d4b29c; /*f87171*/
+}
+
+.chain {
+  color: #a6cebe; /*60a5fa*/
+}
+
+.repeat {
+  color: #9888cb; /*34d399*/
+}
+
+.commandPreviewContainer {
+  background-color: #1f2937;
+  border: 1px solid #374151;
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: 0 0 12px #f472b633;
+}
+
+.previewTitle {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #f9a8d4;
+}
+
+.commandPreviewRows {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.commandPreviewColumn {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.commandBlockImage {
+  image-rendering: pixelated;
+  cursor: pointer;
+  border-radius: 4px;
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.1);
+  transition: box-shadow 0.2s ease;
+}
+
+.commandBlockHighlighted {
+  box-shadow: 0 0 8px 4px #facc15;
+}
+
+.videoTitle {
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #f9a8d4;
+}
+
+.videoAspect {
+  aspect-ratio: 16 / 9;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 0 12px #00000066;
+}
+
+.videoSize {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 1rem;
+}
+
+.oneCommandSection {
+  margin-top: 2rem;
+  background-color: #1f2937;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  text-align: center;
+}
+
+.lazyText {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: #facc15;
+  font-weight: bold;
+}
+
+.oneCommandButton {
+  background-color: #93c5fd;
+  color: black;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.oneCommandButton:hover {
+  background-color: #60a5fa;
+}
+
+.oneCommandBox {
+  margin-top: 1rem;
+  text-align: left;
+}
+
+.warning {
+  color: #f87171;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.commandTextarea {
+  width: 100%;
+  height: 200px;
+  background-color: #111827;
+  color: #d1fae5;
+  border: 1px solid #4b5563;
+  border-radius: 0.375rem;
+  padding: 0.5rem;
+  font-family: monospace;
+  font-size: 0.9rem;
+  resize: vertical;
+}
+
+.copiedMessage {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: #facc15;
+  font-weight: bold;
+  animation: fadeOut 1s ease-in-out forwards;
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.tutorialSteps {
+  margin: 1rem 0;
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.tutorialStep {
+  background-color: #1f2937;
+  padding: 0.6rem 0.8rem;
+  border-radius: 0.5rem;
+  font-size: 0.95rem;
+  color: #e0f2fe;
+  line-height: 1.5;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease;
+}
+
+.tutorialStep:hover {
+  transform: translateX(6px);
+  background-color: #374151;
+}

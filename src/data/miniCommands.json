@@ -1,0 +1,26 @@
+[
+  {
+    "id": "test",
+    "name": "Test",
+    "description": "This is a test mini command.",
+    "versions": { "1.21": true, "1.20": false },
+    "steps": [
+      "Place down a command block.",
+      "Put the command inside",
+      "Yay you did it!"
+    ],
+    "blocks": [
+      {
+        "type": "impulse",
+        "row": 1,
+        "command": "first command"
+      },
+      {
+        "type": "repeat",
+        "row": 2,
+        "command": "second command"
+      }
+    ],
+    "video": "https://www.youtube.com/embed/example"
+  }
+]

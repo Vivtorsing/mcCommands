@@ -129,3 +129,12 @@
     transform: translateY(0);
   }
 }
+
+.sectionTitle {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #f9a8d4;
+  text-align: left;
+}

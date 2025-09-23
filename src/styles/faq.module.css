@@ -94,6 +94,8 @@
   border: none;
   border-radius: 0.5rem;
   padding: 0.7rem 1rem;
+  margin-left: .5rem;
+  margin-right: .5rem;
   cursor: pointer;
   transition: background 0.2s, transform 0.1s;
   font-weight: 600;
