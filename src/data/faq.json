@@ -6,9 +6,54 @@
       "type": "static",
       "answer": "These commands only work on Minecraft Java Edition."
     },
+
+    {
+      "id": "floatingCommandBlockMinecart",
+      "question": "Why are there floating command block minecarts?",
+      "type": "static",
+      "answer": "This can happen if there are too many command blocks to add... In creative mode carefully break the command block minecart one by one that are on top of the command block NOT FLOATING. They should eventually vanish and then carefully check all the commands to ensure you have all of them before turning on the commands."
+    },
+
+    {
+      "id": "oneCommandRed",
+      "question": "The one command is not working / is red?",
+      "type": "interactive",
+      "start": "commandLength",
+      "tree": [
+        {
+          "id": "commandLength",
+          "text": "Is the command more than 32,500 characters? (I should really have a checker for this...)",
+          "options": [
+            { "label": "No", "next": "commandMaybeOutdated" },
+            { "label": "Yes", "next": "commandTooBig" }
+          ]
+        },
+        {
+          "id": "commandTooBig",
+          "conclusion": "You have to manually add all the commands by your self... Sorry about that."
+        },
+        {
+          "id": "commandMaybeOutdated",
+          "text": "Are you using the supported version?",
+          "options": [
+            { "label": "No", "next": "commandOutdated" },
+            { "label": "Yes", "next": "commandExtraSlash" }
+          ]
+        },
+        {
+          "id": "commandExtraSlash",
+          "conclusion": "You may have put an extra / in the beginning or might have added something somewhere in the command or copied it wrong... Maybe recopy the command again and try again"
+        },
+        {
+          "id": "commandOutdated",
+          "conclusion": "The command might sadly be outdated for your version... Maybe Vivtorsing can remake it again..."
+        }
+      ]
+    },
+
     {
       "id": "q2",
-      "question": "The command is not working!",
+      "question": "test interactive (ignore me please)",
       "type": "interactive",
       "start": "errorHelp",
       "tree": [
@@ -30,9 +75,10 @@
         }
       ]
     },
+
     {
         "id": "test",
-        "question": "test",
+        "question": "test (ignore me please)",
         "type": "interactive",
         "start": "first",
         "tree": [

@@ -36,7 +36,6 @@ export default function FAQ() {
         <div className={styles.faqPage}>
         <h2 className={styles.faqTitle}>Frequently Asked Questions</h2>
         <p className={styles.faqDesc}>The place with many questions and many answers!</p>
-        <p className={styles.faqDesc}>WORK IN PROGRESS THESE QUESTIONS AND ANSWERS ARE WRONG!!!</p>
         {faqData.faq.map((item) => (
             <div key={item.id} className={styles.faqItem}>
             <button
