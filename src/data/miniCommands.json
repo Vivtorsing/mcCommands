@@ -1,5 +1,35 @@
 [
   {
+    "id": "Prevent_Item_Despawn",
+    "name": "Prevent Items From Despawning",
+    "description": "This simple tutorial makes it possible for items to never despawn!",
+    "versions": { "1.21.8": true, "1.21.9+": true },
+    "steps": [
+      "Use Command Row 1 or Command Row 2 to either summon the item with tag or give items near you with tags",
+      "Put down a repeat command block in a spawn chunk or area that is always loaded and put Command Row 3 inside",
+      "Here you can either have the age set to -32768 or -1. -32768 will make the item never despawn even if the command block is turned off! -1 will despawn items after 5 minutes if the command block is off but may be laggier. The choice is yours!",
+      "Have a lever running the command and your good to go!"
+    ],
+    "blocks": [
+      {
+        "type": "impulse",
+        "row": 1,
+        "command": "give @p diamond[minecraft:custom_data={noDespawn:1}]"
+      },
+      {
+        "type": "impulse",
+        "row": 2,
+        "command": "execute as @e[type=item,distance=..5] run data merge entity @s {Item:{components:{\"minecraft:custom_data\":{noDespawn:1}}}}"
+      },
+      {
+        "type": "repeat",
+        "row": 3,
+        "command": "execute as @e[type=item,nbt={Item:{components:{\"minecraft:custom_data\":{noDespawn:1}}}},nbt=!{Age:-32768s}] run data merge entity @s {Age:-32768}"
+      }
+    ],
+    "video": "https://www.youtube.com/embed/L1j_5B8JH00"
+  },
+  {
     "id": "test",
     "name": "Test",
     "description": "This is a test mini command.",
