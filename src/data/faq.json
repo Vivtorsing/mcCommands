@@ -11,7 +11,7 @@
       "id": "floatingCommandBlockMinecart",
       "question": "Why are there floating command block minecarts?",
       "type": "static",
-      "answer": "This can happen if there are too many command blocks to add... In creative mode carefully break the command block minecart one by one that are on top of the command block NOT FLOATING. They should eventually vanish and then carefully check all the commands to ensure you have all of them before turning on the commands."
+      "answer": "This can happen if there are too many command blocks to add... Please make sure that you are using a lever instead of a button for this. In creative mode carefully break the command block minecart one by one that are on top of the command block NOT FLOATING. They should eventually vanish and then carefully check all the commands to ensure you have all of them before turning on the commands."
     },
 
     {

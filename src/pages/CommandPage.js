@@ -149,6 +149,7 @@ export default function CommandPage() {
             <div className={styles.oneCommandBox}>
               <p className={styles.warning}>
                 ⚠️ This command will place command blocks facing north. <br />
+                ⚠️ Please use a lever instead of a button for this comamnd. <br />
                 ⚠️ Make a backup before using it in your world. <br />
                 Please double check each command block to ensure it is correct before running!
               </p>

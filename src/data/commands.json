@@ -1,5 +1,164 @@
 [
   {
+    "id": "slot_machine",
+    "name": "Shelf Slot Machine",
+    "description": "The Best Slot Machine Using Shelfs!",
+    "versions": {"1.21.8-": false, "1.21.9+": true},
+    "blocks": [
+      {
+        "type": "impulse",
+        "row": 1,
+        "command": "scoreboard objectives add slot1 dummy"
+      },
+      {
+        "type": "impulse",
+        "row": 2,
+        "command": "scoreboard objectives add slot2 dummy"
+      },
+      {
+        "type": "impulse",
+        "row": 3,
+        "command": "scoreboard objectives add slot3 dummy"
+      },
+      {
+        "type": "impulse",
+        "row": 4,
+        "command": "scoreboard objectives add timer dummy"
+      },
+      {
+        "type": "repeat",
+        "row": 5,
+        "command": "execute as @e[tag=slotMachine] at @s if score @s timer matches ..100 run scoreboard players add @s timer 1"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @e[tag=slotMachine] at @s if block ~ ~-2 ~ lever[powered=true] run scoreboard players set @s timer 1"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @e[tag=slotMachine] at @s if score @s timer matches 1..20 store result score @s slot1 run random value 1..5"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @e[tag=slotMachine] at @s if score @s timer matches 21 run playsound minecraft:block.dispenser.dispense ambient @a ~ ~ ~ 2 1"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @e[tag=slotMachine] at @s if score @s timer matches 1..40 store result score @s slot2 run random value 1..5"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @e[tag=slotMachine] at @s if score @s timer matches 41 run playsound minecraft:block.dispenser.dispense ambient @a ~ ~ ~ 2 1"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @e[tag=slotMachine] at @s if score @s timer matches 1..60 store result score @s slot3 run random value 1..5"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @e[tag=slotMachine] at @s if score @s timer matches 61 run playsound minecraft:block.dispenser.dispense ambient @a ~ ~ ~ 2 1"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @e[tag=slotMachine] at @s if score @s timer matches 80 if score @s slot1 = @s slot2 if score @s slot2 = @s slot3 run give @p diamond"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @e[tag=slotMachine] at @s if score @s timer matches 81 if score @s slot1 = @s slot2 if score @s slot2 = @s slot3 run playsound minecraft:ui.toast.challenge_complete ambient @a ~ ~ ~ 2 1"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @e[tag=slotMachine] at @s if score @s timer matches ..60 run playsound minecraft:entity.item_frame.add_item ambient @a ~ ~ ~ 1 1"
+      },
+      {
+        "type": "repeat",
+        "row": 6,
+        "command": "execute as @e[tag=slotMachine] at @s if score @s timer matches ..100 if score @s slot1 matches 1 run data modify block ~ ~-1 ~ Items[{Slot:0b}].id set value \"minecraft:coal\""
+      },
+      {
+        "type": "chain",
+        "row": 6,
+        "command": "execute as @e[tag=slotMachine] at @s if score @s timer matches ..100 if score @s slot1 matches 2 run data modify block ~ ~-1 ~ Items[{Slot:0b}].id set value \"minecraft:iron_ingot\""
+      },
+      {
+        "type": "chain",
+        "row": 6,
+        "command": "execute as @e[tag=slotMachine] at @s if score @s timer matches ..100 if score @s slot1 matches 3 run data modify block ~ ~-1 ~ Items[{Slot:0b}].id set value \"minecraft:gold_ingot\""
+      },
+      {
+        "type": "chain",
+        "row": 6,
+        "command": "execute as @e[tag=slotMachine] at @s if score @s timer matches ..100 if score @s slot1 matches 4 run data modify block ~ ~-1 ~ Items[{Slot:0b}].id set value \"minecraft:emerald\""
+      },
+      {
+        "type": "chain",
+        "row": 6,
+        "command": "execute as @e[tag=slotMachine] at @s if score @s timer matches ..100 if score @s slot1 matches 5 run data modify block ~ ~-1 ~ Items[{Slot:0b}].id set value \"minecraft:diamond\""
+      },
+      {
+        "type": "repeat",
+        "row": 7,
+        "command": "execute as @e[tag=slotMachine] at @s if score @s timer matches ..100 if score @s slot2 matches 1 run data modify block ~ ~-1 ~ Items[{Slot:1b}].id set value \"minecraft:coal\""
+      },
+      {
+        "type": "chain",
+        "row": 7,
+        "command": "execute as @e[tag=slotMachine] at @s if score @s timer matches ..100 if score @s slot2 matches 2 run data modify block ~ ~-1 ~ Items[{Slot:1b}].id set value \"minecraft:iron_ingot\""
+      },
+      {
+        "type": "chain",
+        "row": 7,
+        "command": "execute as @e[tag=slotMachine] at @s if score @s timer matches ..100 if score @s slot2 matches 3 run data modify block ~ ~-1 ~ Items[{Slot:1b}].id set value \"minecraft:gold_ingot\""
+      },
+      {
+        "type": "chain",
+        "row": 7,
+        "command": "execute as @e[tag=slotMachine] at @s if score @s timer matches ..100 if score @s slot2 matches 4 run data modify block ~ ~-1 ~ Items[{Slot:1b}].id set value \"minecraft:emerald\""
+      },
+      {
+        "type": "chain",
+        "row": 7,
+        "command": "execute as @e[tag=slotMachine] at @s if score @s timer matches ..100 if score @s slot2 matches 5 run data modify block ~ ~-1 ~ Items[{Slot:1b}].id set value \"minecraft:diamond\""
+      },
+      {
+        "type": "repeat",
+        "row": 8,
+        "command": "execute as @e[tag=slotMachine] at @s if score @s timer matches ..100 if score @s slot3 matches 1 run data modify block ~ ~-1 ~ Items[{Slot:2b}].id set value \"minecraft:coal\""
+      },
+      {
+        "type": "chain",
+        "row": 8,
+        "command": "execute as @e[tag=slotMachine] at @s if score @s timer matches ..100 if score @s slot3 matches 2 run data modify block ~ ~-1 ~ Items[{Slot:2b}].id set value \"minecraft:iron_ingot\""
+      },
+      {
+        "type": "chain",
+        "row": 8,
+        "command": "execute as @e[tag=slotMachine] at @s if score @s timer matches ..100 if score @s slot3 matches 3 run data modify block ~ ~-1 ~ Items[{Slot:2b}].id set value \"minecraft:gold_ingot\""
+      },
+      {
+        "type": "chain",
+        "row": 8,
+        "command": "execute as @e[tag=slotMachine] at @s if score @s timer matches ..100 if score @s slot3 matches 4 run data modify block ~ ~-1 ~ Items[{Slot:2b}].id set value \"minecraft:emerald\""
+      },
+      {
+        "type": "chain",
+        "row": 8,
+        "command": "execute as @e[tag=slotMachine] at @s if score @s timer matches ..100 if score @s slot3 matches 5 run data modify block ~ ~-1 ~ Items[{Slot:2b}].id set value \"minecraft:diamond\""
+      }
+    ],
+    "video": "https://www.youtube.com/embed/u4g0KuOvVkU"
+  },
+  {
     "id": "mosquito",
     "name": "Mosquito",
     "description": "Add mosquitoes to your world to troll your friends!",
@@ -51,7 +210,7 @@
         "command": "execute as @a at @s if score @s timer matches 20.. run scoreboard players set @s timer 0"
       }
     ],
-    "video": "https://www.youtube.com/embed/iZ9GwhIYt8o"
+    "video": "https://www.youtube.com/embed/iZ9GwhlYt8o"
   },
   {
     "id": "instant_tree_chop",
