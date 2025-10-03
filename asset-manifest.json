@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/mcCommands/static/css/main.5cb6cff2.css",
-    "main.js": "/mcCommands/static/js/main.65abdd70.js",
+    "main.css": "/mcCommands/static/css/main.8d86a939.css",
+    "main.js": "/mcCommands/static/js/main.0b75ac7f.js",
     "static/js/453.1cb09ac5.chunk.js": "/mcCommands/static/js/453.1cb09ac5.chunk.js",
     "static/media/logo.png": "/mcCommands/static/media/logo.c7b1e75900acb3f7c57e.png",
     "index.html": "/mcCommands/index.html",
-    "main.5cb6cff2.css.map": "/mcCommands/static/css/main.5cb6cff2.css.map",
-    "main.65abdd70.js.map": "/mcCommands/static/js/main.65abdd70.js.map",
+    "main.8d86a939.css.map": "/mcCommands/static/css/main.8d86a939.css.map",
+    "main.0b75ac7f.js.map": "/mcCommands/static/js/main.0b75ac7f.js.map",
     "453.1cb09ac5.chunk.js.map": "/mcCommands/static/js/453.1cb09ac5.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5cb6cff2.css",
-    "static/js/main.65abdd70.js"
+    "static/css/main.8d86a939.css",
+    "static/js/main.0b75ac7f.js"
   ]
 }
