@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import miniCommands from "../data/miniCommands.json";
 import blockImages from "../utils/blockImages";
 import oneCommand from "../utils/oneCommand";
@@ -28,6 +29,11 @@ export default function MiniCommandPage() {
 
   return (
     <div className={styles.commandPageContainer}>
+      {/*seo*/}
+      <Helmet>
+        <title>{cmd ? `${cmd.name} – mcCommands` : "Command not found"}</title>
+        <meta name="description" content={cmd ? cmd.description : "Minecraft command details"} />
+      </Helmet>
       {/*left side*/}
       <div className={styles.commandLeft}>
         <h1 className={styles.commandTitle}>{cmd.name}</h1>

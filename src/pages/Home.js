@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from "react-helmet-async";
 import commands from '../data/commands.json';
 import miniCommands from '../data/miniCommands.json';
 import styles from '../styles/home.module.css';
@@ -26,6 +27,14 @@ export default function Home() {
 
   return (
     <div className={styles.homePage}>
+      {/*seo*/}
+      <Helmet>
+        <title>mcCommands</title>
+        <meta
+          name="description"
+          content="Browse and explore Minecraft commands with videos, tutorials, and examples by Vivtorsing."
+        />
+      </Helmet>
       {/*title and logo*/}
       <div className={styles.header}>
         <img src={logo} alt="Logo" className={styles.logo} />

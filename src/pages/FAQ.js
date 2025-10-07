@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import faqData from "../data/faq.json";
 import styles from '../styles/faq.module.css';
 
@@ -33,35 +34,42 @@ export default function FAQ() {
 
   return (
     <div className={styles.background}>
-        <div className={styles.faqPage}>
+      {/*seo*/}
+      <Helmet>
+        <title>Frequently Asked Questions - mcCommands</title>
+        <meta
+          name="description"
+          content="The place with many questions and many answers!"
+        />
+      </Helmet>
+      <div className={styles.faqPage}>
         <h2 className={styles.faqTitle}>Frequently Asked Questions</h2>
         <p className={styles.faqDesc}>The place with many questions and many answers!</p>
         {faqData.faq.map((item) => (
-            <div key={item.id} className={styles.faqItem}>
+          <div key={item.id} className={styles.faqItem}>
             <button
-                className={styles.faqQuestion}
-                onClick={() => setOpenId(openId === item.id ? null : item.id)}
+              className={styles.faqQuestion}
+              onClick={() => setOpenId(openId === item.id ? null : item.id)}
             >
-                {item.question}
+              {item.question}
             </button>
 
             <div
-                className={`${styles.faqAnswer} ${
-                    openId === item.id ? styles.faqOpen : styles.faqClosed
-                    }`}
+              className={`${styles.faqAnswer} ${openId === item.id ? styles.faqOpen : styles.faqClosed
+                }`}
             >
-                {openId === item.id && (
+              {openId === item.id && (
                 <>
-                    {item.type === "static" && <p>{item.answer}</p>}
-                    {item.type === "interactive" && (
+                  {item.type === "static" && <p>{item.answer}</p>}
+                  {item.type === "interactive" && (
                     <InteractiveFAQ tree={item.tree} start={item.start} />
-                    )}
+                  )}
                 </>
-                )}
+              )}
             </div>
-            </div>
+          </div>
         ))}
-        </div>
+      </div>
     </div>
   );
 }
