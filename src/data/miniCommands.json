@@ -1,5 +1,83 @@
 [
   {
+    "id": "summon_mannequins",
+    "name": "How To Summon and Customize Mannequins",
+    "description": "This simple tutorials gives you all the methods that you can do to summon and customize an Mannequin in Minecraft!",
+    "versions": { "1.21.9+": true },
+    "steps": [
+      "You may take any of these commands with the nbt components and combine them",
+      "Just make sure you put commas and components in the right place!"
+    ],
+    "blocks": [
+      {
+        "type": "impulse",
+        "row": 1,
+        "command": "summon minecraft:mannequin ~ ~1 ~"
+      },
+      {
+        "type": "impulse",
+        "row": 2,
+        "command": "summon minecraft:mannequin ~ ~1 ~ {profile:\"Vivtorsing\",CustomName:\"Subscribe\"}"
+      },
+      {
+        "type": "impulse",
+        "row": 3,
+        "command": "summon minecraft:mannequin ~ ~1 ~ {profile:\"Vivtorsing\",CustomName:\"Subscribe\",hide_description:true}"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "summon minecraft:mannequin ~ ~1 ~ {profile:\"Vivtorsing\",CustomName:\"Subscribe\",description:\"To Me!\"}"
+      },
+      {
+        "type": "impulse",
+        "row": 4,
+        "command": "summon minecraft:mannequin ~ ~1 ~ {profile:\"Notch\",main_hand:\"left\",immovable:true}"
+      },
+      {
+        "type": "impulse",
+        "row": 5,
+        "command": "summon minecraft:mannequin ~ ~1 ~ {profile:{name:\"Flowers\",cape:\"block/diamond_block\"}}"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "summon minecraft:mannequin ~ ~1 ~ {profile:{texture:\"block/diamond_block\",cape:\"block/netherite_block\"}}"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "summon minecraft:mannequin ~ ~1 ~ {profile:{texture:\"block/diamond_block\",cape:\"block/netherite_block\",elytra:\"block/gold_block\",model:\"wide\"}}"
+      },
+      {
+        "type": "impulse",
+        "row": 6,
+        "command": "summon minecraft:mannequin ~ ~1 ~ {profile:\"Vivtorsing\",hidden_layers:[\"hat\",\"cape\"]}"
+      },
+      {
+        "type": "impulse",
+        "row": 7,
+        "command": "summon minecraft:mannequin ~ ~1 ~ {profile:\"Jeb_\",pose:\"crouching\"}"
+      },
+      {
+        "type": "chain",
+        "row": 7,
+        "command": "summon minecraft:mannequin ~ ~1 ~ {profile:\"Jeb_\",pose:\"swimming\"}"
+      },
+      {
+        "type": "chain",
+        "row": 7,
+        "command": "summon minecraft:mannequin ~ ~1 ~ {profile:\"Jeb_\",pose:\"fall_flying\"}"
+      },
+      {
+        "type": "chain",
+        "row": 7,
+        "command": "summon minecraft:mannequin ~ ~1 ~ {profile:\"Jeb_\",pose:\"sleeping\"}"
+      }
+    ],
+    "video": "https://www.youtube.com/embed/Yr-1wrrVhVo"
+  },
+  {
     "id": "Prevent_Item_Despawn",
     "name": "Prevent Items From Despawning",
     "description": "This simple tutorial makes it possible for items to never despawn!",

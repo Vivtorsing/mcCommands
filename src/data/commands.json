@@ -1,5 +1,74 @@
 [
   {
+    "id": "command_text_display",
+    "name": "Command Text Display",
+    "description": "Display the command inside a command block using a Trident or Fishing Rod!",
+    "versions": {"1.21.9+": true},
+    "blocks": [
+      {
+        "type": "repeat",
+        "row": 1,
+        "command": "execute as @e[type=trident,nbt={inGround:1b}] at @s unless entity @e[type=minecraft:text_display,distance=..0.5] align xyz run summon minecraft:text_display ~.5 ~ ~.5 {Tags:[\"commandText\"],text:\"Subscribe to Vivtorsing!\",background:-16777216}"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "execute as @e[type=minecraft:text_display,tag=commandText] at @s unless entity @e[type=minecraft:trident,distance=..0.5] run kill @s"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "execute as @e[type=minecraft:text_display,tag=commandText] at @s run data modify entity @s text set from block ~ ~-1 ~ Command"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "execute as @e[type=minecraft:text_display,tag=commandText] at @s facing entity @p feet run tp @s ~ ~ ~ ~ ~"
+      },
+      {
+        "type": "repeat",
+        "row": 2,
+        "command": "execute as @e[type=fishing_bobber,nbt={OnGround:1b}] at @s unless entity @e[type=minecraft:text_display,distance=..0.5] align xyz run summon minecraft:text_display ~.5 ~ ~.5 {Tags:[\"commandText\"],text:\"hi\",background:-16777216}"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[type=minecraft:text_display,tag=commandText] at @s unless entity @e[type=minecraft:fishing_bobber,distance=..0.5] run kill @s"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[type=minecraft:text_display,tag=commandText] at @s run data modify entity @s text set from block ~ ~-1 ~ Command"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[type=minecraft:text_display,tag=commandText] at @s facing entity @p feet run tp @s ~ ~ ~ ~ ~"
+      },
+      {
+        "type": "repeat",
+        "row": 3,
+        "command": "execute as @e[type=trident,nbt={inGround:1b}] at @s unless entity @e[type=minecraft:text_display,distance=..0.5] align xyz run summon minecraft:text_display ~.5 ~ ~.5 {Tags:[\"commandText\"],text:{\"color\":\"#FF9BFF\",\"text\":\"hi\"},background:-16777216}"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @e[type=minecraft:text_display,tag=commandText] at @s unless entity @e[type=minecraft:trident,distance=..0.5] run kill @s"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @e[type=minecraft:text_display,tag=commandText] at @s run data modify entity @s text.text set from block ~ ~-1 ~ Command"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @e[type=minecraft:text_display,tag=commandText] at @s facing entity @p feet run tp @s ~ ~ ~ ~ ~"
+      }
+    ],
+    "video": "https://www.youtube.com/embed/PzKnoghzWDQ"
+  },
+  {
     "id": "slot_machine",
     "name": "Shelf Slot Machine",
     "description": "The Best Slot Machine Using Shelfs!",

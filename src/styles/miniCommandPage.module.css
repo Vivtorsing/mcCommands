@@ -93,6 +93,10 @@
   font-family: monospace;
   cursor: pointer;
   transition: background-color 0.2s ease, transform 0.2s ease;
+  overflow-wrap: break-word;
+  word-break: break-all;
+  white-space: pre-wrap;
+  max-width: 100%;
 }
 
 .commandLine:hover {
