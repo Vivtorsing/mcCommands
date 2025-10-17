@@ -1,5 +1,119 @@
 [
   {
+    "id": "mannequin_pathfind",
+    "name": "Walking / Pathfinding Mannequins",
+    "description": "Make Mannequins walk around your world!",
+    "versions": { "1.21.9+": true },
+    "steps": [
+      "Use only row 1 for basic movement toward player. Remember to tag the mannequin!",
+      "Use only row 2 for walking on path blocks. Remember to tag the mannequin!",
+      "Use only rows 3,4,5 for pathfinding. You will need to tag and use a wandering trader. Remember to tag both!"
+    ],
+    "blocks": [
+      {
+        "type": "repeat",
+        "row": 1,
+        "command": "execute as @a at @s anchored eyes facing entity @e[type=minecraft:mannequin,tag=followMann,limit=1,sort=nearest] eyes anchored feet positioned ^ ^ ^1 rotated as @s positioned ^ ^ ^-1 unless entity @s[distance=..0.5] run execute as @e[type=minecraft:mannequin,tag=followMann,limit=1,sort=nearest] at @s if entity @p[distance=2..] facing entity @p feet run tp @s ^ ^ ^.15 ~ ~"
+      },
+      {
+        "type": "repeat",
+        "row": 2,
+        "command": "execute as @e[tag=blockMann] at @s if block ~ ~-1 ~ minecraft:magenta_glazed_terracotta[facing=east] run data modify entity @s Motion[0] set value -0.2"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[tag=blockMann] at @s if block ~ ~-1 ~ minecraft:magenta_glazed_terracotta[facing=east] run data merge entity @s {Rotation:[90f,0f]}"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[tag=blockMann] at @s if block ~ ~-1 ~ minecraft:magenta_glazed_terracotta[facing=south] run data modify entity @s Motion[2] set value -0.2"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[tag=blockMann] at @s if block ~ ~-1 ~ minecraft:magenta_glazed_terracotta[facing=south] run data merge entity @s {Rotation:[180f,0f]}"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[tag=blockMann] at @s if block ~ ~-1 ~ minecraft:magenta_glazed_terracotta[facing=west] run data modify entity @s Motion[0] set value 0.2"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[tag=blockMann] at @s if block ~ ~-1 ~ minecraft:magenta_glazed_terracotta[facing=west] run data merge entity @s {Rotation:[-90f,0f]}"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[tag=blockMann] at @s if block ~ ~-1 ~ minecraft:magenta_glazed_terracotta[facing=north] run data modify entity @s Motion[2] set value 0.2"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[tag=blockMann] at @s if block ~ ~-1 ~ minecraft:magenta_glazed_terracotta[facing=north] run data merge entity @s {Rotation:[0f,0f]}"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[tag=blockMann] at @s unless block ^ ^ ^1 air run data modify entity @s Motion[1] set value 0.2"
+      },
+      {
+        "type": "impulse",
+        "row": 3,
+        "command": "team add collision"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "team modify collision collisionRule never"
+      },
+      {
+        "type": "impulse",
+        "row": 4,
+        "command": "give @p minecraft:diamond[minecraft:custom_data={mannFollow:1}]"
+      },
+      {
+        "type": "repeat",
+        "row": 5,
+        "command": "execute as @e[tag=mannAI] at @s if entity @e[tag=wanderMann,limit=1,sort=nearest] run tp @e[tag=wanderMann,limit=1,sort=nearest] ~ ~ ~ ~ ~"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @e[tag=mannAI] at @s unless data entity @s wander_target if entity @e[type=item,nbt={Item:{components:{\"minecraft:custom_data\":{mannFollow:1}}}}] run data merge entity @s {wander_target:[I;0,0,0]}"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @e[tag=mannAI] at @s if entity @e[type=item,nbt={Item:{components:{\"minecraft:custom_data\":{mannFollow:1}}}}] run data modify entity @s wander_target[0] set from entity @e[type=item,nbt={Item:{components:{\"minecraft:custom_data\":{mannFollow:1}}}},limit=1,sort=nearest] Pos[0]"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @e[tag=mannAI] at @s if entity @e[type=item,nbt={Item:{components:{\"minecraft:custom_data\":{mannFollow:1}}}}] run data modify entity @s wander_target[1] set from entity @e[type=item,nbt={Item:{components:{\"minecraft:custom_data\":{mannFollow:1}}}},limit=1,sort=nearest] Pos[1]"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @e[tag=mannAI] at @s if entity @e[type=item,nbt={Item:{components:{\"minecraft:custom_data\":{mannFollow:1}}}}] run data modify entity @s wander_target[2] set from entity @e[type=item,nbt={Item:{components:{\"minecraft:custom_data\":{mannFollow:1}}}},limit=1,sort=nearest] Pos[2]"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @e[tag=mannAI] at @s run effect give @s minecraft:invisibility 100 1 true"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @e[tag=mannAI] at @s run item replace entity @s weapon.mainhand with air"
+      }
+    ],
+    "video": "https://www.youtube.com/embed/k9rslTdPEBM"
+  },
+  {
     "id": "summon_mannequins",
     "name": "How To Summon and Customize Mannequins",
     "description": "This simple tutorials gives you all the methods that you can do to summon and customize an Mannequin in Minecraft!",
