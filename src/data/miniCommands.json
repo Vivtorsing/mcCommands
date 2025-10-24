@@ -1,5 +1,57 @@
 [
   {
+    "id": "object_text_component",
+    "name": "Object Text Component",
+    "description": "Put Block Textures in your text or other places!",
+    "versions": { "1.21.8-": false, "1.21.9": true, "1.21.10+": true },
+    "steps": [
+      "Each row has a different example that you may use and combine"
+    ],
+    "blocks": [
+      {
+        "type": "impulse",
+        "row": 1,
+        "command": "tellraw @a {\"sprite\":\"item/diamond\"}"
+      },
+      {
+        "type": "impulse",
+        "row": 2,
+        "command": "tellraw @a {\"player\":\"Vivtorsing\"}"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "tellraw @a {\"player\":{\"name\":\"Vivtorsing\"},\"hat\":false}"
+      },
+      {
+        "type": "impulse",
+        "row": 3,
+        "command": "tellraw @a {\"atlas\":\"minecraft:gui\",\"sprite\":\"hud/heart/full\"}"
+      },
+      {
+        "type": "impulse",
+        "row": 4,
+        "command": "tellraw @a [{\"player\":\"Vivtorsing\"},\" loves \",{\"sprite\":\"item/diamond\"}]"
+      },
+      {
+        "type": "impulse",
+        "row": 5,
+        "command": "give @p diamond[minecraft:custom_name={\"sprite\":\"item/diamond\"}]"
+      },
+      {
+        "type": "impulse",
+        "row": 6,
+        "command": "data modify block ~ ~1 ~ front_text.messages[0] set value {\"sprite\":\"block/diamond_block\"}"
+      },
+      {
+        "type": "impulse",
+        "row": 7,
+        "command": "title @a title [{\"atlas\":\"minecraft:gui\",\"sprite\":\"player_list/remove_operator\"},\" \",{\"player\":\"Vivtorsing\"},\" \",{\"atlas\":\"minecraft:paintings\",\"sprite\":\"dennis\"},\" Subscribe\",{\"atlas\":\"minecraft:gui\",\"sprite\":\"boss_bar/red_progress\"},{\"atlas\":\"minecraft:gui\",\"sprite\":\"boss_bar/red_progress\"}]"
+      }
+    ],
+    "video": "https://www.youtube.com/embed/dy1NbSsPZlQ"
+  },
+  {
     "id": "mannequin_pathfind",
     "name": "Walking / Pathfinding Mannequins",
     "description": "Make Mannequins walk around your world!",
