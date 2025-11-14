@@ -1,5 +1,139 @@
 [
   {
+    "id": "npc_mannequin",
+    "name": "NPC Mannequin",
+    "description": "Create a NPC Mannequin using Commands!",
+    "versions": {"1.21.10+": true},
+    "blocks": [
+      {
+        "type": "impulse",
+        "row": 1,
+        "command": "summon minecraft:mannequin ~ ~ ~ {Tags:[\"NPC\"],data:{text:\"none\"}}"
+      },
+      {
+        "type": "repeat",
+        "row": 2,
+        "command": "execute as @e[tag=NPC] at @s unless entity @e[type=minecraft:interaction,distance=..1,sort=nearest] run summon minecraft:interaction ~ ~ ~ {height:2f,Tags:[\"NPCInteraction\"]}"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[tag=NPCInteraction] at @s if entity @e[tag=NPC,sort=nearest,limit=1,distance=1..1.1] run kill @s"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[tag=NPC] at @s facing entity @p[distance=..10] feet run tp @s ~ ~ ~ ~ ~"
+      },
+      {
+        "type": "repeat",
+        "row": 3,
+        "command": "execute as @e[tag=NPC,nbt={data:{text:\"none\"}}] at @s unless entity @e[type=minecraft:text_display,distance=..2,sort=nearest] run summon minecraft:text_display ~ ~2 ~ {Tags:[\"NPCText\"],text:[{\"atlas\":\"minecraft:gui\",\"sprite\":\"social_interactions/mute_button\"},\"\\n[\",{\"atlas\":\"minecraft:gui\",\"sprite\":\"toast/mouse\"},\"YES] [\",{\"atlas\":\"minecraft:gui\",\"sprite\":\"toast/right_click\"},\"NO]\"]}"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @e[tag=del] at @s run scoreboard players add @s timer 1"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @e[tag=del] at @s if score @s timer matches 100.. run data modify entity @e[tag=NPC,distance=..3,limit=1] data.text set value \"none\""
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @e[tag=del] at @s if score @s timer matches 100.. run kill @s"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @e[tag=NPCText] at @s facing entity @p[distance=..10] eyes run tp @s ~ ~ ~ ~ ~"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @e[tag=NPCText] at @s if entity @e[tag=NPC,distance=3..3.1] run kill @s"
+      },
+      {
+        "type": "repeat",
+        "row": 4,
+        "command": "execute as @e[type=interaction,tag=NPCInteraction] at @s if entity @e[tag=NPC,nbt={data:{text:\"none\"}},distance=..1] on attacker run data modify entity @e[tag=NPCText,distance=..3,limit=1] text set value [\"Do you like Minecraft?\\n[\",{\"atlas\":\"minecraft:gui\",\"sprite\":\"toast/mouse\"},\"YES] [\",{\"atlas\":\"minecraft:gui\",\"sprite\":\"toast/right_click\"},\"NO]\"]"
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "command": "execute as @e[type=interaction,tag=NPCInteraction] at @s if entity @e[tag=NPC,nbt={data:{text:\"none\"}},distance=..1] on attacker run data modify entity @e[tag=NPC,nbt={data:{text:\"none\"}},distance=..3,limit=1] data.text set value \"minecraft\""
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "conditional": true,
+        "command": "execute as @e[type=interaction,tag=NPCInteraction] run data remove entity @s attack"
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "command": "execute as @e[type=interaction,tag=NPCInteraction] at @s if entity @e[tag=NPC,nbt={data:{text:\"minecraft\"}},distance=..1] on attacker run data merge entity @e[tag=NPCText,distance=..3,limit=1] {Tags:[\"NPCText\",\"del\"],text:[\"ME TOO!\\n\"]}"
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "command": "execute as @e[type=interaction,tag=NPCInteraction] at @s if entity @e[tag=NPC,nbt={data:{text:\"minecraft\"}},distance=..1] on attacker at @s run give @p diamond"
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "conditional": true,
+        "command": "execute as @e[type=interaction,tag=NPCInteraction] run data remove entity @s attack"
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "command": "execute as @e[type=interaction,tag=NPCInteraction] at @s if entity @e[tag=NPC,nbt={data:{text:\"minecraft\"}},distance=..1] on target run data modify entity @e[tag=NPCText,distance=..3,limit=1] text set value [\"WHAT! Don't you LOVE me?\\n[\",{\"atlas\":\"minecraft:gui\",\"sprite\":\"toast/mouse\"},\"OF COURSE I LOVE YOU] [\",{\"atlas\":\"minecraft:gui\",\"sprite\":\"toast/right_click\"},\"GET LOST]\"]"
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "command": "execute as @e[type=interaction,tag=NPCInteraction] at @s if entity @e[tag=NPC,nbt={data:{text:\"minecraft\"}},distance=..1] on target run data modify entity @e[tag=NPC,nbt={data:{text:\"minecraft\"}},distance=..3,limit=1] data.text set value \"love\""
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "conditional": true,
+        "command": "execute as @e[type=interaction,tag=NPCInteraction] run data remove entity @s interaction"
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "command": "execute as @e[type=interaction,tag=NPCInteraction] at @s if entity @e[tag=NPC,nbt={data:{text:\"love\"}},distance=..1] on attacker run data merge entity @e[tag=NPCText,distance=..3,limit=1] {Tags:[\"NPCText\",\"del\"],text:[\"Oh...\\n\"]}"
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "conditional": true,
+        "command": "execute as @e[type=interaction,tag=NPCInteraction] run data remove entity @s attack"
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "command": "execute as @e[type=interaction,tag=NPCInteraction] at @s if entity @e[tag=NPC,nbt={data:{text:\"love\"}},distance=..1] on target run data merge entity @e[tag=NPCText,distance=..3,limit=1] {Tags:[\"NPCText\",\"del\"],text:[\"GO AWAY MEANIE!\\n\"]}"
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "command": "execute as @e[type=interaction,tag=NPCInteraction] at @s if entity @e[tag=NPC,nbt={data:{text:\"love\"}},distance=..1] on target run tp @p[distance=..10] ~ ~10 ~"
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "conditional": true,
+        "command": "execute as @e[type=interaction,tag=NPCInteraction] run data remove entity @s interaction"
+      }
+    ],
+    "video": "https://www.youtube.com/embed/3mDyVaIKLC8"
+  },
+  {
     "id": "command_text_display",
     "name": "Command Text Display",
     "description": "Display the command inside a command block using a Trident or Fishing Rod!",
@@ -516,87 +650,5 @@
       }
     ],
     "video": "https://www.youtube.com/embed/i2LHiRowNAU"
-  },
-  {
-    "id": "test_multichain",
-    "name": "Test Multi-Chain Layout",
-    "description": "A test layout with 6 command blocks across 2 rows.",
-    "versions": {
-      "1.8": false,
-      "1.9": false,
-      "1.19": true,
-      "1.20": true
-    },
-    "blocks": [
-      {
-        "type": "impulse",
-        "facing": "north",
-        "row": 1,
-        "conditional": false,
-        "command": "say Start"
-      },
-      {
-        "type": "chain",
-        "facing": "north",
-        "row": 1,
-        "conditional": false,
-        "command": "say Step 1"
-      },
-      {
-        "type": "chain",
-        "facing": "north",
-        "row": 1,
-        "conditional": true,
-        "command": "say Step 2"
-      },
-      {
-        "type": "chain",
-        "facing": "north",
-        "row": 1,
-        "conditional": true,
-        "command": "say Step 3"
-      },
-      {
-        "type": "repeat",
-        "facing": "north",
-        "row": 2,
-        "conditional": true,
-        "command": "say Step 4"
-      },
-      {
-        "type": "chain",
-        "facing": "north",
-        "row": 2,
-        "conditional": false,
-        "command": "say Done"
-      }
-    ],
-    "chainRows": 2,
-    "video": "https://www.youtube.com/embed/VIDEO_ID"
-  },
-  {
-    "id": "id",
-    "name": "name",
-    "description": "desc",
-    "versions": {"1.21": true},
-    "blocks": [
-      {
-        "type": "impulse",
-        "row": 1,
-        "command": "command"
-      },
-      {
-        "type": "repeat",
-        "row": 2,
-        "command": "command 2"
-      },
-      {
-        "type": "chain",
-        "row": 2,
-        "conditional": true,
-        "command": "command 3"
-      }
-    ],
-    "video": "https://www.youtube.com/embed/id"
   }
 ]
