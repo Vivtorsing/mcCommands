@@ -1,5 +1,49 @@
 [
   {
+    "id": "end_crystal_beam_at_player",
+    "name": "End Crystal Beam At Player",
+    "description": "Make the end crystal beam to a player and heal them!",
+    "versions": {"1.21.10+": true},
+    "blocks": [
+      {
+        "type": "impulse",
+        "row": 1,
+        "command": "tag @e[type=minecraft:end_crystal,distance=..5,limit=1] add playerBeam"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "data modify entity @e[type=minecraft:end_crystal,distance=..5,limit=1] beam_target set from entity @e[type=minecraft:end_crystal,distance=..5,limit=1] Pos"
+      },
+      {
+        "type": "repeat",
+        "row": 2,
+        "command": "execute as @e[tag=playerBeam] at @s unless entity @p[distance=..100] run data modify entity @s beam_target set from entity @s Pos"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[tag=playerBeam] at @s if entity @p[distance=..100] store result entity @s beam_target[0] double 1 run data get entity @p[distance=..100,sort=nearest] Pos[0]"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[tag=playerBeam] at @s if entity @p[distance=..100] store result entity @s beam_target[1] double 1 run data get entity @p[distance=..100,sort=nearest] Pos[1]"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[tag=playerBeam] at @s if entity @p[distance=..100] store result entity @s beam_target[2] double 1 run data get entity @p[distance=..100,sort=nearest] Pos[2]"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[tag=playerBeam] at @s if entity @p[distance=..100] run effect give @p[distance=..100,sort=nearest] minecraft:regeneration 1 1 true"
+      }
+    ],
+    "video": "https://www.youtube.com/embed/ch6VLov8OlE"
+  },
+  {
     "id": "npc_mannequin",
     "name": "NPC Mannequin",
     "description": "Create a NPC Mannequin using Commands!",
