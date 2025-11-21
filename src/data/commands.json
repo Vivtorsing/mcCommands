@@ -1,5 +1,69 @@
 [
   {
+    "id": "hammer_pickaxe",
+    "name": "Hammer Pickaxe",
+    "description": "A pickaxe that can mine 3x3 area!",
+    "versions": {"1.21.10+": true},
+    "blocks": [
+      {
+        "type": "impulse",
+        "row": 1,
+        "command": "scoreboard objectives add hammer minecraft.used:minecraft.diamond_pickaxe"
+      },
+      {
+        "type": "impulse",
+        "row": 2,
+        "command": "scoreboard objectives add playerRot dummy"
+      },
+      {
+        "type": "impulse",
+        "row": 3,
+        "command": "give @p minecraft:diamond_pickaxe[minecraft:custom_data={Hammer:1}]"
+      },
+      {
+        "type": "repeat",
+        "row": 4,
+        "command": "execute as @a at @s[nbt={SelectedItem:{id:\"minecraft:diamond_pickaxe\",components:{\"minecraft:custom_data\":{Hammer:1}}}},scores={hammer=1..}] store result score @s playerRot run data get entity @s Rotation[1]"
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "command": "execute as @a at @s[nbt={SelectedItem:{id:\"minecraft:diamond_pickaxe\",components:{\"minecraft:custom_data\":{Hammer:1}}}},scores={hammer=1..}] at @e[type=item,distance=..8,nbt={Age:0s},sort=nearest,limit=1] if score @s playerRot matches -90..-60 align xyz run summon minecraft:armor_stand ~.5 ~.5 ~.5 {NoGravity:1,Tags:[\"location\"],Rotation:[0F,-90F]}"
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "command": "execute as @a at @s[nbt={SelectedItem:{id:\"minecraft:diamond_pickaxe\",components:{\"minecraft:custom_data\":{Hammer:1}}}},scores={hammer=1..}] at @e[type=item,distance=..8,nbt={Age:0s},sort=nearest,limit=1] if score @s playerRot matches 60..90 align xyz run summon minecraft:armor_stand ~.5 ~.5 ~.5 {NoGravity:1,Tags:[\"location\"],Rotation:[0F,90F]}"
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "command": "execute as @a at @s[nbt={SelectedItem:{id:\"minecraft:diamond_pickaxe\",components:{\"minecraft:custom_data\":{Hammer:1}}}},scores={hammer=1..}] at @e[type=item,distance=..8,nbt={Age:0s},sort=nearest,limit=1] if score @s playerRot matches -59..59 align xyz run summon minecraft:armor_stand ~.5 ~.5 ~.5 {NoGravity:1,Tags:[\"location\"],Rotation:[0F,0F]}"
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "command": "execute as @a at @s[nbt={SelectedItem:{id:\"minecraft:diamond_pickaxe\",components:{\"minecraft:custom_data\":{Hammer:1}}}},scores={hammer=1..}] at @e[type=item,distance=..8,nbt={Age:0s},sort=nearest,limit=1] if score @s playerRot matches -59..59 run execute at @e[tag=location] facing entity @p feet run tp @e[tag=location] ~ ~ ~ ~-180 0"
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "command": "execute at @e[tag=location] run fill ^1 ^1 ^ ^-1 ^-1 ^ air destroy"
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "command": "execute as @a at @s[nbt={SelectedItem:{id:\"minecraft:diamond_pickaxe\",components:{\"minecraft:custom_data\":{Hammer:1}}}},scores={hammer=1..}] run kill @e[tag=location,distance=..10]"
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "command": "execute as @a at @s[nbt={SelectedItem:{id:\"minecraft:diamond_pickaxe\",components:{\"minecraft:custom_data\":{Hammer:1}}}},scores={hammer=1..}] run scoreboard players reset @s"
+      }
+    ],
+    "video": "https://www.youtube.com/embed/CiB3T_GrIIg"
+  },
+  {
     "id": "end_crystal_beam_at_player",
     "name": "End Crystal Beam At Player",
     "description": "Make the end crystal beam to a player and heal them!",
