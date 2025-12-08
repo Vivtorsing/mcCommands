@@ -1,5 +1,114 @@
 [
   {
+    "id": "copycat",
+    "name": "Copy Cat",
+    "description": "A mannequin copy cat",
+    "versions": {"1.21.10+": true},
+    "blocks": [
+      {
+        "type": "impulse",
+        "row": 1,
+        "command": "scoreboard objectives add sneak minecraft.custom:minecraft.sneak_time"
+      },
+      {
+        "type": "impulse",
+        "row": 2,
+        "command": "execute as @e[tag=copyCatVillager] at @s run attribute @s minecraft:scale base set .7"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[tag=copyCatVillager] at @s run data merge entity @s {Silent:1}"
+      },
+      {
+        "type": "repeat",
+        "row": 3,
+        "command": "execute as @p at @s rotated ~ 0 run tp @e[tag=copyCat] ^ ^ ^-1 ~ ~"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @p at @s run data modify entity @e[tag=copyCat,limit=1] Rotation set from entity @s Rotation"
+      },
+      {
+        "type": "repeat",
+        "row": 4,
+        "command": "execute as @e[tag=copyCatVillager] at @s run tp @e[tag=copyCat] ~ ~ ~ ~ ~"
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "command": "execute as @p at @s run data modify entity @e[tag=copyCatVillager,limit=1] wander_target set from entity @s Pos"
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "command": "execute as @e[tag=copyCatVillager] at @s run item replace entity @s weapon.offhand with minecraft:totem_of_undying"
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "command": "execute as @e[tag=copyCatVillager] at @s run effect give @s minecraft:invisibility 2 1 true"
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "command": "execute as @e[tag=copyCatVillager] at @s run item replace entity @s weapon.mainhand with air"
+      },
+      {
+        "type": "repeat",
+        "row": 5,
+        "command": "execute as @p at @s if score @s sneak matches 1.. run data merge entity @e[tag=copyCat,limit=1] {pose:\"crouching\"}"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @p at @s if score @s sneak matches 0 run data merge entity @e[tag=copyCat,limit=1] {pose:\"standing\"}"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @p at @s run scoreboard players set @s sneak 0"
+      },
+      {
+        "type": "repeat",
+        "row": 6,
+        "command": "execute as @e[tag=copyCat] at @s run item replace entity @s weapon.offhand with minecraft:totem_of_undying"
+      },
+      {
+        "type": "chain",
+        "row": 6,
+        "command": "execute as @p at @s run item replace entity @e[tag=copyCat] weapon.mainhand from entity @s weapon.mainhand"
+      },
+      {
+        "type": "chain",
+        "row": 6,
+        "command": "execute as @p at @s run item replace entity @e[tag=copyCat] armor.head from entity @s armor.head"
+      },
+      {
+        "type": "chain",
+        "row": 6,
+        "command": "execute as @p at @s run item replace entity @e[tag=copyCat] armor.chest from entity @s armor.chest"
+      },
+      {
+        "type": "chain",
+        "row": 6,
+        "command": "execute as @p at @s run item replace entity @e[tag=copyCat] armor.legs from entity @s armor.legs"
+      },
+      {
+        "type": "chain",
+        "row": 6,
+        "command": "execute as @p at @s run item replace entity @e[tag=copyCat] armor.feet from entity @s armor.feet"
+      },
+      {
+        "type": "repeat",
+        "row": 7,
+        "command": "execute as @p at @s if entity @e[tag=copyCat,nbt={HurtTime:10s}] run damage @s 1 minecraft:player_attack by @e[tag=copyCat,limit=1]"
+      }
+    ],
+    "video": "https://www.youtube.com/embed/drIE7InmKGo"
+  },
+  {
     "id": "hammer_pickaxe",
     "name": "Hammer Pickaxe",
     "description": "A pickaxe that can mine 3x3 area!",
