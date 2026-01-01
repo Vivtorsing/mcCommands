@@ -1,5 +1,59 @@
 [
   {
+    "id": "lucky_blocks",
+    "name": "Lucky Blocks",
+    "description": "A very simple command to create simple lucky blocks!",
+    "versions": {"1.21.11+": true},
+    "blocks": [
+      {
+        "type": "impulse",
+        "row": 1,
+        "command": "scoreboard objectives add luckyBlock minecraft.mined:minecraft.gold_block"
+      },
+      {
+        "type": "repeat",
+        "row": 2,
+        "command": "execute as @a at @s if score @s luckyBlock matches 1.. store result score @s luckyBlock run random value 2..6"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @a at @s if score @s luckyBlock matches 2 run execute at @e[type=item,nbt={Item:{id:\"minecraft:gold_block\"}},sort=nearest,limit=1] run setblock ~ ~ ~ minecraft:diamond_block"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @a at @s if score @s luckyBlock matches 3 run execute at @e[type=item,nbt={Item:{id:\"minecraft:gold_block\"}},sort=nearest,limit=1] run setblock ~ ~25 ~ minecraft:anvil"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @a at @s if score @s luckyBlock matches 4 run execute at @e[type=item,nbt={Item:{id:\"minecraft:gold_block\"}},sort=nearest,limit=1] run summon item ~ ~ ~ {Item:{id:\"minecraft:netherite_ingot\"}}"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @a at @s if score @s luckyBlock matches 5 run execute at @e[type=item,nbt={Item:{id:\"minecraft:gold_block\"}},sort=nearest,limit=1] run summon minecraft:zombie"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @a at @s if score @s luckyBlock matches 6 run execute at @e[type=item,nbt={Item:{id:\"minecraft:gold_block\"}},sort=nearest,limit=1] run setblock ~ ~ ~ lava"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @a at @s if score @s luckyBlock matches 1.. run kill @e[type=item,nbt={Item:{id:\"minecraft:gold_block\"}},sort=nearest,limit=1]"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @a at @s if score @s luckyBlock matches 1.. run scoreboard players reset @s luckyBlock"
+      }
+    ],
+    "video": "https://www.youtube.com/embed/jR74GWRLjw8"
+  },
+  {
     "id": "copycat",
     "name": "Copy Cat",
     "description": "A mannequin copy cat",
