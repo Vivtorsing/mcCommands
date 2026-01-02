@@ -1,9 +1,98 @@
 [
   {
+    "id": "rocket_boots",
+    "name": "Rocket Boots",
+    "description": "Boots that can allow you to fly!",
+    "versions": {"1.21.10": true, "1.21.11+": true},
+    "blocks": [
+      {
+        "type": "impulse",
+        "row": 1,
+        "command": "give @p minecraft:iron_boots[custom_data={Rocket:1}]"
+      },
+      {
+        "type": "impulse",
+        "row": 2,
+        "command": "scoreboard objectives add sneak minecraft.custom:minecraft.sneak_time"
+      },
+      {
+        "type": "impulse",
+        "row": 3,
+        "command": "scoreboard objectives add timer dummy"
+      },
+      {
+        "type": "repeat",
+        "row": 4,
+        "command": "execute as @a[nbt={equipment:{feet:{components:{\"minecraft:custom_data\":{Rocket:1}}}}}] at @s if score @s sneak matches 1.. if score @s timer matches ..100 run scoreboard players add @s timer 1"
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "command": "execute as @a[nbt={equipment:{feet:{components:{\"minecraft:custom_data\":{Rocket:1}}}}}] at @s if score @s sneak matches 1.. if score @s timer matches ..100 run effect give @s minecraft:levitation 1 1 true"
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "command": "execute as @a[nbt={equipment:{feet:{components:{\"minecraft:custom_data\":{Rocket:1}}}}}] at @s if score @s sneak matches 1.. if score @s timer matches ..100 run particle minecraft:flame ^-.1 ^ ^"
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "command": "execute as @a[nbt={equipment:{feet:{components:{\"minecraft:custom_data\":{Rocket:1}}}}}] at @s if score @s sneak matches 1.. if score @s timer matches ..100 run particle minecraft:flame ^.1 ^ ^"
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "command": "execute as @a[nbt={active_effects:[{id:\"minecraft:levitation\"}],equipment:{feet:{components:{\"minecraft:custom_data\":{Rocket:1}}}}}] at @s if score @s sneak matches 0 run effect clear @s minecraft:levitation"
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "command": "execute as @a[nbt={equipment:{feet:{components:{\"minecraft:custom_data\":{Rocket:1}}}}}] at @s if score @s sneak matches 0 if score @s timer matches 1.. run scoreboard players remove @s timer 1"
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "command": "execute as @a[nbt={equipment:{feet:{components:{\"minecraft:custom_data\":{Rocket:1}}}}}] at @s if score @s sneak matches 1.. if score @s timer matches 101 run scoreboard players set @s timer 200"
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "command": "execute as @a at @s run scoreboard players set @s sneak 0"
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "command": "execute as @a at @s unless score @s timer matches -1000..1000 run scoreboard players set @s timer 0"
+      },
+      {
+        "type": "repeat",
+        "row": 5,
+        "command": "execute as @a[nbt={equipment:{feet:{components:{\"minecraft:custom_data\":{Rocket:1}}}}}] at @s if score @s timer matches 0..30 run title @s actionbar [{\"color\":\"green\",\"text\":\"Rocket Boots OverHeat: \"},{\"color\":\"green\",\"score\":{\"name\":\"@s\",\"objective\":\"timer\"}},{\"color\":\"green\",\"text\":\"%\"}]"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @a[nbt={equipment:{feet:{components:{\"minecraft:custom_data\":{Rocket:1}}}}}] at @s if score @s timer matches 31..60 run title @s actionbar [{\"color\":\"yellow\",\"text\":\"Rocket Boots OverHeat: \"},{\"color\":\"yellow\",\"score\":{\"name\":\"@s\",\"objective\":\"timer\"}},{\"color\":\"yellow\",\"text\":\"%\"}]"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @a[nbt={equipment:{feet:{components:{\"minecraft:custom_data\":{Rocket:1}}}}}] at @s if score @s timer matches 61.. run title @s actionbar [{\"color\":\"red\",\"text\":\"Rocket Boots OverHeat: \"},{\"color\":\"red\",\"score\":{\"name\":\"@s\",\"objective\":\"timer\"}},{\"color\":\"red\",\"text\":\"%\"}]"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @a[nbt={equipment:{feet:{components:{\"minecraft:custom_data\":{Rocket:1}}}}}] at @s if score @s timer matches 101.. run title @s actionbar [{\"atlas\":\"minecraft:gui\",\"sprite\":\"dialog/warning_button\"},{\"color\":\"dark_red\",\"text\":\" Rocket Boots OVERHEATED: \"},{\"color\":\"dark_red\",\"score\":{\"name\":\"@s\",\"objective\":\"timer\"}},{\"color\":\"dark_red\",\"text\":\"% \"},{\"atlas\":\"minecraft:gui\",\"sprite\":\"dialog/warning_button\"}]"
+      }
+    ],
+    "video": "https://www.youtube.com/embed/7jg4JyR2bnI"
+  },
+  {
     "id": "lucky_blocks",
     "name": "Lucky Blocks",
     "description": "A very simple command to create simple lucky blocks!",
-    "versions": {"1.21.11+": true},
+    "versions": {"1.21.10": true, "1.21.11+": true},
     "blocks": [
       {
         "type": "impulse",
