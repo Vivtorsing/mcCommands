@@ -1,5 +1,33 @@
 [
   {
+    "id": "dispenser_player_shear",
+    "name": "Dispenser that can shear players helmets",
+    "description": "So now in hardcore you can take off the curse of binding carved pumpkin...",
+    "versions": { "1.21.10": true, "1.21.11+": true },
+    "steps": [
+      "If you want this to work on all 4 sides change ^ ^1 ^1 to the other 3 sides",
+      "You can also change this to other armor slots as well"
+    ],
+    "blocks": [
+      {
+        "type": "repeat",
+        "row": 1,
+        "command": "execute as @a[nbt={equipment:{head:{}}}] at @s rotated ~ 0 if block ^ ^1 ^1 minecraft:dispenser[triggered=true]{Items:[{id:\"minecraft:shears\"}]} run item replace block ^ ^1 ^1 container.0 from entity @s armor.head"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "execute as @a[nbt={equipment:{head:{}}}] at @s rotated ~ 0 if block ^ ^1 ^1 minecraft:dispenser[triggered=true]{Items:[{id:\"minecraft:shears\"}]} run playsound minecraft:entity.sheep.shear ambient @s ~ ~ ~"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "execute as @a[nbt={equipment:{head:{}}}] at @s rotated ~ 0 if block ^ ^1 ^1 minecraft:dispenser[triggered=true]{Items:[{id:\"minecraft:shears\"}]} run item replace entity @s armor.head with air"
+      }
+    ],
+    "video": "https://www.youtube.com/embed/WIkARkZPGSA"
+  },
+  {
     "id": "object_text_component",
     "name": "Object Text Component",
     "description": "Put Block Textures in your text or other places!",
