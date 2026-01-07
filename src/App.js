@@ -33,6 +33,7 @@ import Home from './pages/Home';
 import CommandPage from './pages/CommandPage';
 import MiniCommandPage from "./pages/MiniCommandPage";
 import FAQ from "./pages/FAQ";
+import ParticleGen from "./pages/ParticleGen";
 import Nav from './components/Nav';
 import Footer from './components/Footer';
 import ScrollToTop from "./components/ScrollToTop";
@@ -48,6 +49,7 @@ function App() {
           <Route path="/command/:id" element={<CommandPage />} />
           <Route path="/mini/:id" element={<MiniCommandPage />} />
           <Route path="/faq" element={<FAQ />} />
+          <Route path="/ParticleGen" element={<ParticleGen />} />
         </Routes>
         <Footer />
       </Router>
