@@ -1,5 +1,169 @@
 [
   {
+    "id": "villager_player",
+    "name": "Villager Player",
+    "description": "Make your villagers look like players!",
+    "versions": {"1.21.10": true, "1.21.11+": true},
+    "blocks": [
+      {
+        "type": "impulse",
+        "row": 1,
+        "command": "scoreboard objectives add villagerSleeping dummy"
+      },
+      {
+        "type": "impulse",
+        "row": 2,
+        "command": "team add collision"
+      },
+      {
+        "type": "impulse",
+        "row": 3,
+        "command": "team modify collision collisionRule never"
+      },
+      {
+        "type": "repeat",
+        "row": 4,
+        "command": "execute as @e[tag=villagerPlayer] at @s run team join collision"
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "command": "execute as @e[tag=villagerMann] at @s run team join collision"
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "command": "execute as @e[tag=villagerMann] at @s run attribute @s minecraft:scale base set .99"
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "command": "execute as @e[tag=villagerPlayer] at @s run effect give @s minecraft:invisibility infinite 1 true"
+      },
+      {
+        "type": "repeat",
+        "row": 5,
+        "command": "execute as @e[tag=villagerPlayer] at @s run tp @e[tag=villagerMann,type=minecraft:mannequin,distance=..1,sort=nearest,limit=1] ~ ~ ~"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @e[tag=villagerPlayer] at @s unless entity @e[tag=villagerMann,type=minecraft:mannequin,distance=..1,sort=nearest] run summon minecraft:mannequin ~ ~ ~ {Tags:[villagerMann]}"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @e[tag=villagerMann] at @s unless entity @e[tag=villagerPlayer,distance=..1,sort=nearest] run kill @s"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @e[tag=villagerMann] at @s run data modify entity @s Rotation set from entity @e[tag=villagerPlayer,distance=..1,sort=nearest,limit=1] Rotation"
+      },
+      {
+        "type": "repeat",
+        "row": 6,
+        "command": "execute as @e[tag=villagerPlayer] at @s store success score @s villagerSleeping run data get entity @s sleeping_pos"
+      },
+      {
+        "type": "chain",
+        "row": 6,
+        "command": "execute as @e[tag=villagerPlayer] at @s if score @s villagerSleeping matches 1.. run data merge entity @e[tag=villagerMann,type=minecraft:mannequin,distance=..1,sort=nearest,limit=1] {pose:\"sleeping\"}"
+      },
+      {
+        "type": "chain",
+        "row": 6,
+        "command": "execute as @e[tag=villagerPlayer] at @s if score @s villagerSleeping matches 0 run data merge entity @e[tag=villagerMann,type=minecraft:mannequin,distance=..1,sort=nearest,limit=1] {pose:\"standing\"}"
+      },
+      {
+        "type": "repeat",
+        "row": 7,
+        "command": "execute as @e[tag=villagerPlayer,nbt={VillagerData:{profession:\"minecraft:none\"}}] at @s run data merge entity @e[tag=villagerMann,type=minecraft:mannequin,distance=..1,sort=nearest,limit=1] {profile:\"\"}"
+      },
+      {
+        "type": "chain",
+        "row": 7,
+        "command": "execute as @e[tag=villagerPlayer,nbt={VillagerData:{profession:\"minecraft:farmer\"}}] at @s run data merge entity @e[tag=villagerMann,type=minecraft:mannequin,distance=..1,sort=nearest,limit=1] {profile:\"xievha\"}"
+      },
+      {
+        "type": "chain",
+        "row": 7,
+        "command": "execute as @e[tag=villagerPlayer,nbt={VillagerData:{profession:\"minecraft:cleric\"}}] at @s run data merge entity @e[tag=villagerMann,type=minecraft:mannequin,distance=..1,sort=nearest,limit=1] {profile:\"a5t6\"}"
+      },
+      {
+        "type": "chain",
+        "row": 7,
+        "command": "execute as @e[tag=villagerPlayer,nbt={VillagerData:{profession:\"minecraft:armorer\"}}] at @s run data merge entity @e[tag=villagerMann,type=minecraft:mannequin,distance=..1,sort=nearest,limit=1] {profile:\"Victoh\"}"
+      },
+      {
+        "type": "chain",
+        "row": 7,
+        "command": "execute as @e[tag=villagerPlayer,nbt={VillagerData:{profession:\"minecraft:butcher\"}}] at @s run data merge entity @e[tag=villagerMann,type=minecraft:mannequin,distance=..1,sort=nearest,limit=1] {profile:\"VintageBeef\"}"
+      },
+      {
+        "type": "chain",
+        "row": 7,
+        "command": "execute as @e[tag=villagerPlayer,nbt={VillagerData:{profession:\"minecraft:cartographer\"}}] at @s run data merge entity @e[tag=villagerMann,type=minecraft:mannequin,distance=..1,sort=nearest,limit=1] {profile:\"Monocle\"}"
+      },
+      {
+        "type": "chain",
+        "row": 7,
+        "command": "execute as @e[tag=villagerPlayer,nbt={VillagerData:{profession:\"minecraft:fisherman\"}}] at @s run data merge entity @e[tag=villagerMann,type=minecraft:mannequin,distance=..1,sort=nearest,limit=1] {profile:\"Grian\"}"
+      },
+      {
+        "type": "chain",
+        "row": 7,
+        "command": "execute as @e[tag=villagerPlayer,nbt={VillagerData:{profession:\"minecraft:fletcher\"}}] at @s run data merge entity @e[tag=villagerMann,type=minecraft:mannequin,distance=..1,sort=nearest,limit=1] {profile:\"DexSc\"}"
+      },
+      {
+        "type": "chain",
+        "row": 7,
+        "command": "execute as @e[tag=villagerPlayer,nbt={VillagerData:{profession:\"minecraft:leatherworker\"}}] at @s run data merge entity @e[tag=villagerMann,type=minecraft:mannequin,distance=..1,sort=nearest,limit=1] {profile:\"Felissiaa\"}"
+      },
+      {
+        "type": "chain",
+        "row": 7,
+        "command": "execute as @e[tag=villagerPlayer,nbt={VillagerData:{profession:\"minecraft:librarian\"}}] at @s run data merge entity @e[tag=villagerMann,type=minecraft:mannequin,distance=..1,sort=nearest,limit=1] {profile:\"promlument\"}"
+      },
+      {
+        "type": "chain",
+        "row": 7,
+        "command": "execute as @e[tag=villagerPlayer,nbt={VillagerData:{profession:\"minecraft:mason\"}}] at @s run data merge entity @e[tag=villagerMann,type=minecraft:mannequin,distance=..1,sort=nearest,limit=1] {profile:\"Stone\"}"
+      },
+      {
+        "type": "chain",
+        "row": 7,
+        "command": "execute as @e[tag=villagerPlayer,nbt={VillagerData:{profession:\"minecraft:shepherd\"}}] at @s run data merge entity @e[tag=villagerMann,type=minecraft:mannequin,distance=..1,sort=nearest,limit=1] {profile:\"Sheep\"}"
+      },
+      {
+        "type": "chain",
+        "row": 7,
+        "command": "execute as @e[tag=villagerPlayer,nbt={VillagerData:{profession:\"minecraft:toolsmith\"}}] at @s run data merge entity @e[tag=villagerMann,type=minecraft:mannequin,distance=..1,sort=nearest,limit=1] {profile:\"Dalex6\"}"
+      },
+      {
+        "type": "chain",
+        "row": 7,
+        "command": "execute as @e[tag=villagerPlayer,nbt={VillagerData:{profession:\"minecraft:weaponsmith\"}}] at @s run data merge entity @e[tag=villagerMann,type=minecraft:mannequin,distance=..1,sort=nearest,limit=1] {profile:\"Vxncx\"}"
+      },
+      {
+        "type": "repeat",
+        "row": 8,
+        "command": "execute as @e[tag=villagerPlayer,nbt={equipment:{}}] at @s run item replace entity @e[tag=villagerMann,type=minecraft:mannequin,distance=..1,sort=nearest,limit=1] weapon.mainhand from entity @s weapon.mainhand"
+      },
+      {
+        "type": "chain",
+        "row": 8,
+        "command": "execute as @e[tag=villagerPlayer] at @s run item replace entity @s weapon.mainhand with air"
+      },
+      {
+        "type": "chain",
+        "row": 8,
+        "command": "execute as @e[tag=villagerMann] at @s if entity @p[distance=5..] run item replace entity @s weapon.mainhand with air"
+      }
+    ],
+    "video": "https://www.youtube.com/embed/TIL1Jbuj2xI"
+  },
+  {
     "id": "rocket_boots",
     "name": "Rocket Boots",
     "description": "Boots that can allow you to fly!",
