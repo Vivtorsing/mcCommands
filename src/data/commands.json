@@ -1,5 +1,44 @@
 [
   {
+    "id": "mantle_up",
+    "name": "Mantle Up",
+    "description": "Adding the Hytale mantle up 4 blocks thing",
+    "versions": {"1.21.10": true, "1.21.11+": true},
+    "blocks": [
+      {
+        "type": "impulse",
+        "row": 1,
+        "command": "scoreboard objectives add jump minecraft.custom:minecraft.jump"
+      },
+      {
+        "type": "impulse",
+        "row": 2,
+        "command": "scoreboard objectives add playerRot dummy"
+      },
+      {
+        "type": "repeat",
+        "row": 3,
+        "command": "execute as @a at @s store result score @s playerRot run data get entity @s Rotation[1]"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @a at @s if score @s playerRot matches -90..-60 if score @s jump matches 1.. rotated ~ 0 unless block ^ ^2 ^1 air if block ^ ^3 ^1 air if block ^ ^4 ^1 air run effect give @s minecraft:levitation 1 1 true"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @a at @s if score @s playerRot matches -90..-70 if score @s jump matches 1.. rotated ~ 0 unless block ^ ^3 ^1 air if block ^ ^4 ^1 air if block ^ ^5 ^1 air run effect give @s minecraft:levitation 1 2 true"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @a at @s run scoreboard players reset @s jump"
+      }
+    ],
+    "video": "https://www.youtube.com/embed/gmmiM4IAzec"
+  },
+  {
     "id": "villager_player",
     "name": "Villager Player",
     "description": "Make your villagers look like players!",
