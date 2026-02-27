@@ -1,5 +1,39 @@
 [
   {
+    "id": "player_tracking_compass",
+    "name": "Player Tracking Compass",
+    "description": "A compass that can track any player or any entity!",
+    "versions": {"1.21.10": true, "1.21.11+": true},
+    "steps": [
+      "use Row 1 to summon a compass and put that compass in slot 1 of a chest",
+      "Change Row 2 chest coordinates to your actual chest coordinate",
+      "Tag the player or entity with compassTagged"
+    ],
+    "blocks": [
+      {
+        "type": "impulse",
+        "row": 1,
+        "command": "give @p minecraft:compass[minecraft:lodestone_tracker={target:{dimension:\"minecraft:overworld\",pos:[I;0,0,0]},tracked:false}]"
+      },
+      {
+        "type": "repeat",
+        "row": 2,
+        "command": "data modify block -277 4 -113 Items[0].components.minecraft:lodestone_tracker.target.pos set from entity @e[tag=compassTagged,limit=1] Pos"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "data modify block -277 4 -113 Items[0].components.minecraft:lodestone_tracker.target.dimension set from entity @e[tag=compassTagged,limit=1] Dimension"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @a[nbt={SelectedItem:{id:\"minecraft:compass\"}}] at @s run item replace entity @s weapon.mainhand from block -277 4 -113 container.0"
+      }
+    ],
+    "video": "https://www.youtube.com/embed/F4hRJ2USQYM"
+  },
+  {
     "id": "dispenser_player_shear",
     "name": "Dispenser that can shear players helmets",
     "description": "So now in hardcore you can take off the curse of binding carved pumpkin...",
