@@ -1,5 +1,64 @@
 [
   {
+    "id": "banner_fan",
+    "name": "Banner Fan",
+    "description": "Animated Working Banner Fan!",
+    "versions": { "1.21.10": true, "1.21.11+": true },
+    "steps": [
+      "Use row 1 to create the scoreboard",
+      "Run row 2 with a lever to keep your fan running",
+      "Run row 3 with a button and place these commands anywhere to spawn in the fan blades"
+    ],
+    "blocks": [
+      {
+        "type": "impulse",
+        "row": 1,
+        "command": "scoreboard objectives add amount dummy"
+      },
+      {
+        "type": "repeat",
+        "row": 2,
+        "command": "execute as @e[tag=fan] at @s store result score @s amount run data get entity @s Pose.Head[2]"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[tag=fan] at @s if score @s amount matches 0 run data merge entity @s {Pose:{Head:[0f,0f,1f]}}"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[tag=fan] at @s run scoreboard players add @s amount 1"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[tag=fan] at @s store result entity @s Pose.Head[2] float 1 run scoreboard players get @s amount"
+      },
+      {
+        "type": "impulse",
+        "row": 3,
+        "command": "summon minecraft:armor_stand ~ ~.5625 ~.7 {Tags:[\"fan\"],NoGravity:1,Invisible:1,Pose:{Head:[0f,0f,1f]}}"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "summon minecraft:armor_stand ~ ~.5625 ~1.7 {Tags:[\"fan\"],NoGravity:1,Invisible:1,Pose:{Head:[0f,0f,121f]}}"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "summon minecraft:armor_stand ~ ~.5625 ~2.7 {Tags:[\"fan\"],NoGravity:1,Invisible:1,Pose:{Head:[0f,0f,241f]}}"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @e[tag=fan,distance=..5] at @s run item replace entity @s armor.head with minecraft:white_banner"
+      }
+    ],
+    "video": "https://www.youtube.com/embed/9cVR0jCGyiY"
+  },
+  {
     "id": "player_tracking_compass",
     "name": "Player Tracking Compass",
     "description": "A compass that can track any player or any entity!",
