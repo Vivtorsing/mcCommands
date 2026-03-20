@@ -1,5 +1,114 @@
 [
   {
+    "id": "throwable_arrow",
+    "name": "Throwable Arrow",
+    "description": "An arrow that you can throw with just your hands!",
+    "versions": {"1.21.11+": true},
+    "blocks": [
+      {
+        "type": "impulse",
+        "row": 1,
+        "command": "scoreboard objectives add pos dummy"
+      },
+      {
+        "type": "impulse",
+        "row": 2,
+        "command": "scoreboard objectives add throwArrow minecraft.used:minecraft.arrow"
+      },
+      {
+        "type": "impulse",
+        "row": 3,
+        "command": "give @p minecraft:arrow[minecraft:custom_data={throw:1},minecraft:consumable={animation:\"trident\",sound:\"entity.parrot.step\",has_consume_particles:false,on_consume_effects:[{type:\"minecraft:play_sound\",sound:\"entity.arrow.shoot\"}]}]"
+      },
+      {
+        "type": "repeat",
+        "row": 4,
+        "command": "execute as @a[nbt={SelectedItem:{components:{\"minecraft:custom_data\":{throw:1}}}}] at @s if score @s throwArrow matches 1.. run summon minecraft:arrow ^ ^1 ^.5 {Tags:[\"throw\"]}"
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "command": "execute as @a[nbt={SelectedItem:{components:{\"minecraft:custom_data\":{throw:1}}}}] at @s if score @s throwArrow matches 1.. run summon minecraft:marker ^ ^1 ^5 {Tags:[\"throwDest\"]}"
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "command": "execute as @a[nbt={SelectedItem:{components:{\"minecraft:custom_data\":{throw:1}}}}] at @s if score @s throwArrow matches 1.. run scoreboard players reset @s throwArrow"
+      },
+      {
+        "type": "repeat",
+        "row": 5,
+        "command": "execute as @e[tag=throw] at @s store result score arrowX pos run data get entity @s Pos[0] 1000"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @e[tag=throw] at @s store result score arrowY pos run data get entity @s Pos[1] 1000"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @e[tag=throw] at @s store result score arrowZ pos run data get entity @s Pos[2] 1000"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @e[tag=throw] at @s store result score arrowDestX pos as @e[tag=throwDest,limit=1,sort=nearest] run data get entity @s Pos[0] 1000"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @e[tag=throw] at @s store result score arrowDestY pos as @e[tag=throwDest,limit=1,sort=nearest] run data get entity @s Pos[1] 1000"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @e[tag=throw] at @s store result score arrowDestZ pos as @e[tag=throwDest,limit=1,sort=nearest] run data get entity @s Pos[2] 1000"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "scoreboard players operation arrowDestX pos -= arrowX pos"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "scoreboard players operation arrowDestY pos -= arrowY pos"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "scoreboard players operation arrowDestZ pos -= arrowZ pos"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @e[tag=throw] at @s if entity @e[tag=throwDest,distance=..5] store result entity @s Motion[0] double .001 run scoreboard players get arrowDestX pos"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @e[tag=throw] at @s if entity @e[tag=throwDest,distance=..5] store result entity @s Motion[1] double .001 run scoreboard players get arrowDestY pos"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @e[tag=throw] at @s if entity @e[tag=throwDest,distance=..5] store result entity @s Motion[2] double .001 run scoreboard players get arrowDestZ pos"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @e[tag=throw] at @s run kill @e[tag=throwDest,distance=..5,limit=1,sort=nearest]"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @e[tag=throw] at @s run tag @s remove throw"
+      }
+    ],
+    "video": "https://www.youtube.com/embed/upO-i-4D8JU"
+  },
+  {
     "id": "mantle_up",
     "name": "Mantle Up",
     "description": "Adding the Hytale mantle up 4 blocks thing",
