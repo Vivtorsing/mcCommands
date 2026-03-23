@@ -1,5 +1,224 @@
 [
   {
+    "id": "double_or_nothing",
+    "name": "Double Or Nothing Minigame",
+    "description": "Heads or tails minigame with double or nothing!",
+    "versions": {"1.21.11+": true},
+    "blocks": [
+      {
+        "type": "impulse",
+        "row": 1,
+        "command": "scoreboard objectives add random dummy"
+      },
+      {
+        "type": "impulse",
+        "row": 2,
+        "command": "scoreboard objectives add bet dummy"
+      },
+      {
+        "type": "impulse",
+        "row": 3,
+        "command": "scoreboard objectives add amount dummy"
+      },
+      {
+        "type": "impulse",
+        "row": 4,
+        "command": "scoreboard players set doubleGame bet 2"
+      },
+      {
+        "type": "repeat",
+        "row": 5,
+        "command": "execute as @a at @s if entity @e[tag=doubleOrNothingMachine,distance=..20] if block -349 6 -42 minecraft:oak_button[powered=true] unless score @s random matches 1..2 run tellraw @s \"<DOUBLE OR NOTHING> YOU DID NOT PICK HEADS OR TAILS\""
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @a at @s if entity @e[tag=doubleOrNothingMachine,distance=..20] if block -349 6 -42 minecraft:oak_button[powered=true] if score @s random matches 1..2 unless entity @s[tag=doubleBet] store result score @s amount run clear @s diamond 0"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @a at @s if entity @e[tag=doubleOrNothingMachine,distance=..20] if block -349 6 -42 minecraft:oak_button[powered=true] if score @s random matches 1..2 unless entity @s[tag=doubleBet] if score @s amount matches 0 run tellraw @s \"<DOUBLE OR NOTHING> YOU NEED 1 DIAMOND TO PLAY\""
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @a at @s if entity @e[tag=doubleOrNothingMachine,distance=..20] if block -349 6 -42 minecraft:oak_button[powered=true] if score @s random matches 1..2 unless entity @s[tag=doubleBet] if score @s amount matches 1.. run clear @s diamond 1"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @a at @s if entity @e[tag=doubleOrNothingMachine,distance=..20] if block -349 6 -42 minecraft:oak_button[powered=true] if score @s random matches 1..2 unless entity @s[tag=doubleBet] if score @s amount matches 1.. run scoreboard players set @s bet 1"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @a at @s if entity @e[tag=doubleOrNothingMachine,distance=..20] if block -349 6 -42 minecraft:oak_button[powered=true] if score @s random matches 1..2 unless entity @s[tag=doubleBet] if score @s amount matches 1.. run tag @s add doubleBet"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @a at @s if entity @e[tag=doubleOrNothingMachine,distance=..20] if block -349 6 -42 minecraft:oak_button[powered=true] run scoreboard players reset doubleGame timer"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @a at @s if entity @e[tag=doubleOrNothingMachine,distance=..20] if block -349 6 -42 minecraft:oak_button[powered=true] run scoreboard players reset doubleGameFlip timer"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @a at @s if entity @e[tag=doubleOrNothingMachine,distance=..20] if block -349 6 -42 minecraft:oak_button[powered=true] run scoreboard players reset doubleGameTimer timer"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @a at @s if entity @e[tag=doubleOrNothingMachine,distance=..20] if block -349 6 -42 minecraft:oak_button[powered=true] if score @s random matches 1..2 if entity @s[tag=doubleBet] if score @s amount matches 1.. run setblock -349 6 -42 air"
+      },
+      {
+        "type": "repeat",
+        "row": 6,
+        "command": "execute as @a at @s if entity @e[tag=doubleOrNothingMachine,distance=..20] if block -348 4 -42 minecraft:oak_button[powered=true] run scoreboard players set @s random 1"
+      },
+      {
+        "type": "chain",
+        "row": 6,
+        "command": "execute as @a at @s if entity @e[tag=doubleOrNothingMachine,distance=..20] if block -350 4 -42 minecraft:oak_button[powered=true] run scoreboard players set @s random 2"
+      },
+      {
+        "type": "repeat",
+        "row": 7,
+        "command": "execute unless score doubleGameTimer timer matches ..20 run scoreboard players set doubleGameTimer timer 0"
+      },
+      {
+        "type": "chain",
+        "row": 7,
+        "command": "execute if block -349 6 -42 air if score doubleGameTimer timer matches ..2 run scoreboard players add doubleGame timer 10"
+      },
+      {
+        "type": "chain",
+        "row": 7,
+        "command": "execute if block -349 6 -42 air if score doubleGameTimer timer matches 3..5 run scoreboard players add doubleGame timer 5"
+      },
+      {
+        "type": "chain",
+        "row": 7,
+        "command": "execute if block -349 6 -42 air if score doubleGameTimer timer matches 6..7 run scoreboard players add doubleGame timer 2"
+      },
+      {
+        "type": "chain",
+        "row": 7,
+        "command": "execute if block -349 6 -42 air if score doubleGameTimer timer matches 8..10 run scoreboard players add doubleGame timer 1"
+      },
+      {
+        "type": "chain",
+        "row": 7,
+        "command": "execute if score doubleGame timer matches 10.. run scoreboard players add doubleGameFlip timer 1"
+      },
+      {
+        "type": "chain",
+        "row": 7,
+        "command": "execute if score doubleGame timer matches 10.. run scoreboard players add doubleGameTimer timer 1"
+      },
+      {
+        "type": "chain",
+        "row": 7,
+        "command": "execute if score doubleGame timer matches 10.. run scoreboard players set doubleGame timer 0"
+      },
+      {
+        "type": "repeat",
+        "row": 8,
+        "command": "execute as @a[tag=doubleBet] at @s if score doubleGameFlip timer matches 1 run playsound minecraft:block.stone_button.click_on ambient @a ~ ~ ~ 10 1"
+      },
+      {
+        "type": "chain",
+        "row": 8,
+        "command": "execute if score doubleGameFlip timer matches 1 store result score doubleGame random run random value 1..2"
+      },
+      {
+        "type": "chain",
+        "row": 8,
+        "command": "execute if score doubleGame random matches 1 run item replace block -349 4 -41 container.13 with minecraft:ender_pearl[minecraft:custom_name=\"HEADS\"]"
+      },
+      {
+        "type": "chain",
+        "row": 8,
+        "command": "execute if score doubleGame random matches 2 run item replace block -349 4 -41 container.13 with minecraft:ender_eye[minecraft:custom_name=\"TAILS\"]"
+      },
+      {
+        "type": "chain",
+        "row": 8,
+        "command": "scoreboard players reset doubleGameFlip timer"
+      },
+      {
+        "type": "repeat",
+        "row": 9,
+        "command": "execute as @a[tag=doubleBet] at @s unless score doubleGameFlip timer matches 0..2 if score doubleGameTimer timer matches 11.. unless score @s random = doubleGame random run scoreboard players set @s bet 0"
+      },
+      {
+        "type": "chain",
+        "row": 9,
+        "command": "execute as @a[tag=doubleBet] at @s unless score doubleGameFlip timer matches 0..2 if score doubleGameTimer timer matches 11.. unless score @s random = doubleGame random run tellraw @s \"<DOUBLE OR NOTHING> YOU LOST! GET LOST!\""
+      },
+      {
+        "type": "chain",
+        "row": 9,
+        "command": "execute as @a[tag=doubleBet] at @s unless score doubleGameFlip timer matches 0..2 if score doubleGameTimer timer matches 11.. unless score @s random = doubleGame random run tag @s remove doubleBet"
+      },
+      {
+        "type": "chain",
+        "row": 9,
+        "command": "execute as @a[tag=doubleBet] at @s unless score doubleGameFlip timer matches 0..2 if score doubleGameTimer timer matches 11.. if score @s random = doubleGame random run scoreboard players operation @s bet *= doubleGame bet"
+      },
+      {
+        "type": "chain",
+        "row": 9,
+        "command": "execute as @a[tag=doubleBet] at @s unless score doubleGameFlip timer matches 0..2 if score doubleGameTimer timer matches 11.. if score @s random = doubleGame random run tellraw @s [\"<DOUBLE OR NOTHING> You WON! You have \", {\"score\":{\"name\":\"@s\",\"objective\":\"bet\"}}, \" diamonds! Do you want to DOUBLE OR NOTHING???\"]"
+      },
+      {
+        "type": "chain",
+        "row": 9,
+        "command": "execute as @a[tag=doubleBet] at @s unless score doubleGameFlip timer matches 0..2 if score doubleGameTimer timer matches 11.. if score @s random = doubleGame random run playsound minecraft:entity.firework_rocket.launch ambient @s"
+      },
+      {
+        "type": "chain",
+        "row": 9,
+        "command": "execute unless score doubleGameFlip timer matches 0..2 if score doubleGameTimer timer matches 11.. run setblock -349 6 -42 minecraft:oak_button"
+      },
+      {
+        "type": "chain",
+        "row": 9,
+        "command": "execute unless score doubleGameFlip timer matches 0..2 if score doubleGameTimer timer matches 11.. run scoreboard players reset doubleGameTimer timer"
+      },
+      {
+        "type": "repeat",
+        "row": 10,
+        "command": "execute as @a[tag=doubleBet] at @s if score @s bet matches 1.. if block -351 6 -41 minecraft:mangrove_button[powered=true] run tag @s add doubleCashOut"
+      },
+      {
+        "type": "chain",
+        "row": 10,
+        "command": "execute as @a[tag=doubleBet] at @s if score @s bet matches 1.. if block -351 6 -41 minecraft:mangrove_button[powered=true] run tag @s remove doubleBet"
+      },
+      {
+        "type": "chain",
+        "row": 10,
+        "command": "execute as @a[tag=doubleCashOut] at @s if score @s bet matches 1.. run summon item ~ ~10 ~ {Item:{id:\"minecraft:diamond\",count:1}}"
+      },
+      {
+        "type": "chain",
+        "row": 10,
+        "command": "execute as @a[tag=doubleCashOut] at @s if score @s bet matches 1.. run scoreboard players remove @s bet 1"
+      },
+      {
+        "type": "chain",
+        "row": 10,
+        "command": "execute as @a[tag=doubleCashOut] at @s if score @s bet matches 0 run tag @s remove doubleCashOut"
+      }
+    ],
+    "video": "https://www.youtube.com/embed/Ubkgcule2oE"
+  },
+  {
     "id": "throwable_arrow",
     "name": "Throwable Arrow",
     "description": "An arrow that you can throw with just your hands!",
