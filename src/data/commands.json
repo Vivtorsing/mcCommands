@@ -1,5 +1,44 @@
 [
   {
+    "id": "baby_mobs_visual_cue",
+    "name": "Baby Mobs Visual Cue",
+    "description": "Be able to tell if a baby mob is aged locked just by holding a golden dandelion!",
+    "versions": {"26.1": true},
+    "blocks": [
+      {
+        "type": "impulse",
+        "row": 1,
+        "command": "team add baby baby"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "team modify baby color yellow"
+      },
+      {
+        "type": "repeat",
+        "row": 2,
+        "command": "execute as @a[nbt={SelectedItem:{id:\"minecraft:golden_dandelion\"}}] at @s if entity @e[nbt={AgeLocked:1b},distance=..5] run team join baby @e[nbt={AgeLocked:1b},distance=..5]"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @a[nbt={SelectedItem:{id:\"minecraft:golden_dandelion\"}}] at @s if entity @e[nbt={AgeLocked:1b},distance=..5] run effect give @e[nbt={AgeLocked:1b},distance=..5] minecraft:glowing 1 1 true"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[team=baby] unless entity @s[nbt={AgeLocked:1b}] run team leave @s"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @a[nbt={SelectedItem:{id:\"minecraft:golden_dandelion\"}}] at @s if entity @e[nbt={AgeLocked:0b},distance=..5] run effect clear @e[nbt={AgeLocked:0b},distance=..5] minecraft:glowing"
+      }
+    ],
+    "video": "https://www.youtube.com/embed/HoTkgAKPq7w"
+  },
+  {
     "id": "double_or_nothing",
     "name": "Double Or Nothing Minigame",
     "description": "Heads or tails minigame with double or nothing!",
