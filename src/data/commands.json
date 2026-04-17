@@ -1,5 +1,139 @@
 [
   {
+    "id": "chicken_egg",
+    "name": "Chicken Egg",
+    "description": "Have chicken eggs in your world that can hatch into baby chickens!",
+    "versions": {"1.21.10+": true, "26.1+": true},
+    "blocks": [
+      {
+        "type": "impulse",
+        "row": 1,
+        "command": "scoreboard objectives add timer dummy"
+      },
+      {
+        "type": "repeat",
+        "row": 2,
+        "command": "execute as @e[type=item,nbt={Item:{count:1,id:\"minecraft:egg\"}},tag=!egg] at @s run data merge entity @s {Tags:[\"egg\",\"whiteEgg\"]}"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[type=item,nbt={Item:{count:1,id:\"minecraft:brown_egg\"}},tag=!egg] at @s run data merge entity @s {Tags:[\"egg\",\"brownEgg\"]}"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[type=item,nbt={Item:{count:1,id:\"minecraft:blue_egg\"}},tag=!egg] at @s run data merge entity @s {Tags:[\"egg\",\"blueEgg\"]}"
+      },
+      {
+        "type": "repeat",
+        "row": 3,
+        "command": "execute as @e[type=item,nbt={Item:{count:1,id:\"minecraft:egg\"},OnGround:1b}] at @s run summon block_display ~-.1 ~ ~-.1 {Tags:[\"eggBlock\"],transformation:{left_rotation:[0f,0f,0f,1f],right_rotation:[0f,0f,0f,1f],translation:[0f,0f,0f],scale:[0.1875f,0.3125f,0.1875f]},block_state:{Name:\"minecraft:snow_block\"}}"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @e[type=item,nbt={Item:{count:1,id:\"minecraft:brown_egg\"},OnGround:1b}] at @s run summon block_display ~-.1 ~ ~-.1 {Tags:[\"eggBlock\"],transformation:{left_rotation:[0f,0f,0f,1f],right_rotation:[0f,0f,0f,1f],translation:[0f,0f,0f],scale:[0.1875f,0.3125f,0.1875f]},block_state:{Name:\"minecraft:brown_mushroom_block\"}}"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @e[type=item,nbt={Item:{count:1,id:\"minecraft:blue_egg\"},OnGround:1b}] at @s run summon block_display ~-.1 ~ ~-.1 {Tags:[\"eggBlock\"],transformation:{left_rotation:[0f,0f,0f,1f],right_rotation:[0f,0f,0f,1f],translation:[0f,0f,0f],scale:[0.1875f,0.3125f,0.1875f]},block_state:{Name:\"minecraft:light_blue_terracotta\"}}"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @e[type=item,nbt={OnGround:1b},tag=whiteEgg] at @s run summon minecraft:interaction ~ ~ ~ {response:1b,Tags:[\"eggInteraction\",\"whiteEggInteraction\"],width:.1875f,height:.3125f}"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @e[type=item,nbt={OnGround:1b},tag=brownEgg] at @s run summon minecraft:interaction ~ ~ ~ {response:1b,Tags:[\"eggInteraction\",\"brownEggInteraction\"],width:.1875f,height:.3125f}"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @e[type=item,nbt={OnGround:1b},tag=blueEgg] at @s run summon minecraft:interaction ~ ~ ~ {response:1b,Tags:[\"eggInteraction\",\"blueEggInteraction\"],width:.1875f,height:.3125f}"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @e[type=item,nbt={OnGround:1b},tag=egg] at @s run kill @s"
+      },
+      {
+        "type": "repeat",
+        "row": 4,
+        "command": "execute as @e[tag=whiteEggInteraction] at @s on target run give @p egg"
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "command": "execute as @e[tag=brownEggInteraction] at @s on target run give @p brown_egg"
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "command": "execute as @e[tag=blueEggInteraction] at @s on target run give @p blue_egg"
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "command": "execute as @e[tag=eggInteraction] at @s on target run kill @e[type=minecraft:block_display,limit=1,sort=nearest,distance=..0.1875]"
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "command": "execute as @e[tag=eggInteraction] at @s on target run kill @e[type=minecraft:interaction,limit=1,sort=nearest,distance=..0.1875]"
+      },
+      {
+        "type": "repeat",
+        "row": 5,
+        "command": "execute as @e[tag=eggBlock] at @s if entity @p[distance=..0.2] run playsound minecraft:entity.turtle.egg_break ambient @p[distance=..0.2] ~ ~ ~ 5 1"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @e[tag=eggBlock] at @s if entity @p[distance=..0.2] run kill @s"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @e[tag=eggInteraction] at @s if entity @p[distance=..0.2] run kill @s"
+      },
+      {
+        "type": "repeat",
+        "row": 6,
+        "command": "execute as @e[tag=eggInteraction] at @s run scoreboard players add @s timer 1"
+      },
+      {
+        "type": "chain",
+        "row": 6,
+        "command": "execute as @e[tag=whiteEggInteraction] at @s if score @s timer matches 100.. run summon minecraft:chicken ~ ~ ~ {Age:-25000,variant:\"minecraft:temperate\"}"
+      },
+      {
+        "type": "chain",
+        "row": 6,
+        "command": "execute as @e[tag=brownEggInteraction] at @s if score @s timer matches 100.. run summon minecraft:chicken ~ ~ ~ {Age:-25000,variant:\"minecraft:warm\"}"
+      },
+      {
+        "type": "chain",
+        "row": 6,
+        "command": "execute as @e[tag=blueEggInteraction] at @s if score @s timer matches 100.. run summon minecraft:chicken ~ ~ ~ {Age:-25000,variant:\"minecraft:cold\"}"
+      },
+      {
+        "type": "chain",
+        "row": 6,
+        "command": "execute as @e[tag=eggInteraction] at @s if score @s timer matches 100.. run kill @e[tag=eggBlock,sort=nearest,distance=..0.2]"
+      },
+      {
+        "type": "chain",
+        "row": 6,
+        "command": "execute as @e[tag=eggInteraction] at @s if score @s timer matches 100.. run kill @s"
+      }
+    ],
+    "video": "https://www.youtube.com/embed/IcWcMBGqXNY"
+  },
+  {
     "id": "baby_mobs_visual_cue",
     "name": "Baby Mobs Visual Cue",
     "description": "Be able to tell if a baby mob is aged locked just by holding a golden dandelion!",
