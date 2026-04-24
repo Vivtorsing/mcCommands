@@ -1,5 +1,39 @@
 [
   {
+    "id": "fart",
+    "name": "Fart",
+    "description": "Where you can fart randomly when crouching...",
+    "versions": {"1.21.10+": true, "26.1+": true},
+    "blocks": [
+      {
+        "type": "impulse",
+        "row": 1,
+        "command": "scoreboard objectives add sneak minecraft.custom:minecraft.sneak_time"
+      },
+      {
+        "type": "repeat",
+        "row": 2,
+        "command": "execute as @a at @s if score @s sneak matches 1..9 store result score @s sneak run random value 10..110"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @a at @s if score @s sneak matches 10 run playsound minecraft:block.note_block.trumpet_oxidized ambient @a ~ ~ ~ 1 1"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @a at @s if score @s sneak matches 10 rotated ~ 0 run particle minecraft:dust_color_transition{from_color:[0,1,0],to_color:[.25,.75,.25],scale:1} ^ ^.5 ^-.5 .1 .1 .1 1 1 normal"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @a at @s if score @s sneak matches 1.. run scoreboard players reset @s sneak"
+      }
+    ],
+    "video": "https://www.youtube.com/embed/EZEh6S4a_so"
+  },
+  {
     "id": "chicken_egg",
     "name": "Chicken Egg",
     "description": "Have chicken eggs in your world that can hatch into baby chickens!",
