@@ -1,5 +1,34 @@
 [
   {
+    "id": "freeze",
+    "name": "Freeze",
+    "description": "Now you can freeze in any cold biome if your not wearing a leather chestplate!",
+    "versions": {"1.21.10+": true, "26.1+": true},
+    "blocks": [
+      {
+        "type": "repeat",
+        "row": 1,
+        "command": "execute as @a at @s run clear @s minecraft:snow[minecraft:custom_data={freeze:1}]"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "execute as @a[nbt=!{equipment:{chest:{count:1,id:\"minecraft:leather_chestplate\"}}}] at @s if biome ~ ~ ~ #minecraft:spawns_cold_variant_farm_animals run item replace entity @s armor.chest with minecraft:snow[minecraft:item_model=\"air\",minecraft:custom_data={freeze:1},minecraft:equippable={slot:\"chest\",equip_sound:\"intentionally_empty\",camera_overlay:\"minecraft:misc/powder_snow_outline\"}]"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "execute as @a[nbt=!{equipment:{chest:{count:1,id:\"minecraft:leather_chestplate\"}}}] at @s if biome ~ ~ ~ #minecraft:spawns_cold_variant_farm_animals run damage @s 1 minecraft:freeze"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "execute as @a[nbt=!{equipment:{chest:{count:1,id:\"minecraft:leather_chestplate\"}}}] at @s if biome ~ ~ ~ #minecraft:spawns_cold_variant_farm_animals run effect give @s minecraft:slowness 1 2 true"
+      }
+    ],
+    "video": "https://www.youtube.com/embed/sOKPVjxxE50"
+  },
+  {
     "id": "fart",
     "name": "Fart",
     "description": "Where you can fart randomly when crouching...",
