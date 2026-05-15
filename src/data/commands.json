@@ -1,5 +1,39 @@
 [
   {
+    "id": "security_gate",
+    "name": "Security Gate",
+    "description": "A Security Gate that you can use to ensure no players come with scary items!",
+    "versions": {"1.21.10+": true, "26.1+": true},
+    "blocks": [
+      {
+        "type": "repeat",
+        "row": 1,
+        "command": "execute as @e[type=item] at @s if entity @e[tag=itemSecurity,distance=..0.75] run tp @s ~ ~ ~.1"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "execute as @e[type=item] at @s if entity @e[tag=itemSecurityCatcher,distance=..0.75] if items entity @s container.* #minecraft:enchantable/weapon run tp @s ~-3 ~ ~"
+      },
+      {
+        "type": "repeat",
+        "row": 2,
+        "command": "execute as @a at @s if entity @e[tag=playerSecurity,distance=..1] if data entity @s Inventory[] run execute as @e[tag=playerSecurity,distance=..1] at @s run setblock ^ ^ ^-1 minecraft:barrier"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @a at @s if entity @e[tag=playerSecurity,distance=..1] if data entity @s equipment{} run execute as @e[tag=playerSecurity,distance=..1] at @s run setblock ^ ^ ^-1 minecraft:barrier"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[tag=playerSecurity] at @s unless entity @p[distance=..1] unless block ^ ^ ^-1 air run setblock ^ ^ ^-1 air"
+      }
+    ],
+    "video": "https://www.youtube.com/embed/HsiXCztlRtY"
+  },
+  {
     "id": "freeze",
     "name": "Freeze",
     "description": "Now you can freeze in any cold biome if your not wearing a leather chestplate!",
