@@ -1,5 +1,109 @@
 [
   {
+    "id": "join_leave_signs",
+    "name": "Join Leave Signs",
+    "description": "Signs that players can join or leave your minigames!",
+    "versions": {"1.21.10+": true, "26.1+": true},
+    "blocks": [
+      {
+        "type": "impulse",
+        "row": 1,
+        "command": "scoreboard objectives add joinSign trigger"
+      },
+      {
+        "type": "impulse",
+        "row": 2,
+        "command": "scoreboard objectives add leaveSign trigger"
+      },
+      {
+        "type": "impulse",
+        "row": 3,
+        "command": "scoreboard objectives add playerCount dummy"
+      },
+      {
+        "type": "impulse",
+        "row": 4,
+        "command": "setblock ~ ~1 ~ minecraft:oak_sign{front_text:{messages:[\"\",{\"text\":\"Leave Game\",\"color\":\"#FF9BFF\",\"click_event\":{\"action\":\"run_command\",\"command\":\"/trigger leaveSign add 1\"}},\"\",\"\"]}}"
+      },
+      {
+        "type": "repeat",
+        "row": 5,
+        "command": "scoreboard players enable @a[tag=!joinedSign] joinSign"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @a at @s if score @s joinSign matches 1.. run tag @s add joinedSign"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @a at @s if score @s joinSign matches 1.. run tp @s ~ ~10 ~ 0 0"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @a at @s if score @s joinSign matches 1.. run scoreboard players add testGame playerCount 1"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute as @a at @s if score @s joinSign matches 1.. run scoreboard players reset @s joinSign"
+      },
+      {
+        "type": "repeat",
+        "row": 6,
+        "command": "scoreboard players enable @a[tag=joinedSign] leaveSign"
+      },
+      {
+        "type": "chain",
+        "row": 6,
+        "command": "execute as @a[tag=joinedSign] at @s if score @s leaveSign matches 1.. run tp @s ~ ~20 ~ 0 0"
+      },
+      {
+        "type": "chain",
+        "row": 6,
+        "command": "execute as @a[tag=joinedSign] at @s if score @s leaveSign matches 1.. run scoreboard players remove testGame playerCount 1"
+      },
+      {
+        "type": "chain",
+        "row": 6,
+        "command": "execute as @a at @s if score @s leaveSign matches 1.. run tag @s remove joinedSign"
+      },
+      {
+        "type": "chain",
+        "row": 6,
+        "command": "execute as @a at @s if score @s leaveSign matches 1.. run scoreboard players reset @s leaveSign"
+      },
+      {
+        "type": "impulse",
+        "row": 7,
+        "command": "execute as @a[tag=joinedSign] at @s run tp @s ~ ~5 ~ 0 0"
+      },
+      {
+        "type": "chain",
+        "row": 7,
+        "command": "execute as @a[tag=joinedSign] at @s run tag @s remove joinedSign"
+      },
+      {
+        "type": "chain",
+        "row": 7,
+        "command": "scoreboard players reset testGame playerCount"
+      },
+      {
+        "type": "repeat",
+        "row": 8,
+        "command": "execute unless score testGame playerCount matches 0..10 run scoreboard players set testGame playerCount 0"
+      },
+      {
+        "type": "chain",
+        "row": 8,
+        "command": "setblock ~ ~1 ~ minecraft:oak_sign{front_text:{messages:[{\"text\":\"Join Game\",\"color\":\"#FF9BFF\",\"click_event\":{\"action\":\"run_command\",\"command\":\"/trigger joinSign add 1\"}},[{\"score\":{\"name\":\"testGame\",\"objective\":\"playerCount\"}}, \"/10\"],\"\",\"\"]}}"
+      }
+    ],
+    "video": "https://www.youtube.com/embed/ywTM_9LYOA4"
+  },
+  {
     "id": "security_gate",
     "name": "Security Gate",
     "description": "A Security Gate that you can use to ensure no players come with scary items!",
