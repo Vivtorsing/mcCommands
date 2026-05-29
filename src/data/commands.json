@@ -1,5 +1,199 @@
 [
   {
+    "id": "tntrun",
+    "name": "TNTRun",
+    "description": "TNTRun Using Only Commands!",
+    "versions": {"26.1+": true},
+    "blocks": [
+      {
+        "type": "impulse",
+        "row": 1,
+        "command": "scoreboard players set tntRunPlayers tntRun 0"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "scoreboard players set tntRunCountdownTimer tntRun 300"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "scoreboard players set tntRunReset tntRun 0"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "scoreboard players set tntRunBlockTimer tntRun 10"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "scoreboard players set tntRunStarted tntRun 0"
+      },
+      {
+        "type": "repeat",
+        "row": 2,
+        "command": "execute if score tntRunReset tntRun matches 1 unless entity @e[tag=tntRunReseter] run summon minecraft:armor_stand ~ ~1 ~ {NoGravity:1,Tags:[\"tntRunReseter\"]}"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute if score tntRunReset tntRun matches 1 unless entity @e[tag=tntRunReseterTop] run summon minecraft:armor_stand ~ ~1 ~ {NoGravity:1,Tags:[\"tntRunReseterTop\"]}"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[tag=tntRunReseter] at @s unless entity @e[tag=tntRunReseterTop,distance=..0.5] unless block ~ ~-1 ~ air run fill ~ ~-1 ~ ~ ~-1 ~ minecraft:light_blue_wool"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[tag=tntRunReseter] at @s unless entity @e[tag=tntRunReseterTop,distance=..1] run tp @s ~ ~1 ~"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[tag=tntRunReseter] at @s if entity @e[tag=tntRunReseterTop,distance=..1] run scoreboard players set tntRunReset tntRun 0"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute if score tntRunReset tntRun matches 0 run kill @e[tag=tntRunReseter]"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute if score tntRunReset tntRun matches 0 run kill @e[tag=tntRunReseterTop]"
+      },
+      {
+        "type": "repeat",
+        "row": 3,
+        "command": "execute if score tntRunPlayers tntRun matches 1.. if score tntRunStarted tntRun matches 0 run scoreboard players remove tntRunCountdownTimer tntRun 1"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute if score tntRunCountdownTimer tntRun matches 200 run title @a[tag=tntRunJoin] title \"10\""
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute if score tntRunCountdownTimer tntRun matches 100 run title @a[tag=tntRunJoin] title \"5\""
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute if score tntRunCountdownTimer tntRun matches 80 run title @a[tag=tntRunJoin] title \"4\""
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute if score tntRunCountdownTimer tntRun matches 60 run title @a[tag=tntRunJoin] title \"3\""
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute if score tntRunCountdownTimer tntRun matches 40 run title @a[tag=tntRunJoin] title \"2\""
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute if score tntRunCountdownTimer tntRun matches 20 run title @a[tag=tntRunJoin] title \"1\""
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute if score tntRunCountdownTimer tntRun matches 0 run title @a[tag=tntRunJoin] title \"GO\""
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute if score tntRunCountdownTimer tntRun matches 0 run scoreboard players set tntRunStarted tntRun 1"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute if score tntRunCountdownTimer tntRun matches 0 run scoreboard players set tntRunCountdownTimer tntRun 300"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute if score tntRunPlayers tntRun matches 0 if score tntRunStarted tntRun matches 0 run scoreboard players set tntRunCountdownTimer tntRun 300"
+      },
+      {
+        "type": "repeat",
+        "row": 4,
+        "command": "execute as @a[tag=tntRunJoin,tag=!tntRunLost] at @s if score tntRunStarted tntRun matches 1 if block ~ ~-1 ~ bedrock run title @s title \"Game Over\""
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "command": "execute as @a[tag=tntRunJoin,tag=!tntRunLost] at @s if score tntRunStarted tntRun matches 1 if block ~ ~-1 ~ bedrock run tellraw @s [{\"score\":{\"name\":\"tntRunPlayers\",\"objective\":\"tntRun\"}},\" Place: \",{\"selector\":\"@s\"}]"
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "command": "execute as @a[tag=tntRunJoin,tag=!tntRunLost] at @s if score tntRunStarted tntRun matches 1 if block ~ ~-1 ~ bedrock run scoreboard players remove tntRunPlayers tntRun 1"
+      },
+      {
+        "type": "chain",
+        "row": 4,
+        "command": "execute as @a[tag=tntRunJoin] at @s if score tntRunStarted tntRun matches 1 if block ~ ~-1 ~ bedrock run tag @s add tntRunLost"
+      },
+      {
+        "type": "repeat",
+        "row": 5,
+        "command": "execute if score tntRunStarted tntRun matches 1 if score tntRunPlayers tntRun matches 0 run tp @a[tag=tntRunJoin] ~ ~5 ~ 180 0"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute if score tntRunStarted tntRun matches 1 if score tntRunPlayers tntRun matches 0 run tag @a[tag=tntRunJoin] remove tntRunLost"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute if score tntRunStarted tntRun matches 1 if score tntRunPlayers tntRun matches 0 run tag @a[tag=tntRunJoin] remove tntRunJoin"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute if score tntRunStarted tntRun matches 1 if score tntRunPlayers tntRun matches 0 run scoreboard players set tntRunReset tntRun 1"
+      },
+      {
+        "type": "chain",
+        "row": 5,
+        "command": "execute if score tntRunStarted tntRun matches 1 if score tntRunPlayers tntRun matches 0 run scoreboard players set tntRunStarted tntRun 0"
+      },
+      {
+        "type": "repeat",
+        "row": 6,
+        "command": "execute as @a[tag=tntRunJoin] at @s if score tntRunStarted tntRun matches 1 if block ~ ~-1 ~ minecraft:light_blue_wool unless entity @e[tag=tntRunTouchedBlock,type=minecraft:armor_stand,distance=..0.5] run summon minecraft:armor_stand ~ ~ ~ {Tags:[\"tntRunTouchedBlock\"]}"
+      },
+      {
+        "type": "chain",
+        "row": 6,
+        "command": "execute as @e[tag=tntRunTouchedBlock] at @s run scoreboard players add @s tntRun 1"
+      },
+      {
+        "type": "chain",
+        "row": 6,
+        "command": "execute as @e[tag=tntRunTouchedBlock] at @s if score @s tntRun >= tntRunBlockTimer tntRun run setblock ~ ~-1 ~ air destroy"
+      },
+      {
+        "type": "chain",
+        "row": 6,
+        "command": "execute as @e[tag=tntRunTouchedBlock] at @s if score @s tntRun >= tntRunBlockTimer tntRun run kill @e[type=item,distance=..2]"
+      },
+      {
+        "type": "chain",
+        "row": 6,
+        "command": "execute as @e[tag=tntRunTouchedBlock] at @s if block ~ ~-1 ~ air run kill @s"
+      }
+    ],
+    "video": "https://www.youtube.com/embed/uVDpWyyZm90"
+  },
+  {
     "id": "join_leave_signs",
     "name": "Join Leave Signs",
     "description": "Signs that players can join or leave your minigames!",
