@@ -1,5 +1,59 @@
 [
   {
+    "id": "mannequin_pumpkin_melon_farmer",
+    "name": "Mannequin Pumpkin / Melon Farmer",
+    "description": "Where you can have a mannequin farm your pumpkins and melons!",
+    "versions": {"26.1.2+": true},
+    "blocks": [
+      {
+        "type": "impulse",
+        "row": 1,
+        "command": "scoreboard objectives add timer dummy"
+      },
+      {
+        "type": "repeat",
+        "row": 2,
+        "command": "execute as @e[tag=melonFarmer] at @s rotated ~ 0 if block ^ ^ ^0.5 air run tp @s ^ ^ ^.1"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[tag=melonFarmer] at @s rotated ~ 0 if block ^ ^-1 ^ minecraft:diamond_block run tp @s ^1 ^ ^ ~180 40"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[tag=melonFarmer] at @s rotated ~ 0 unless block ^ ^ ^0.5 air run scoreboard players add @s timer 1"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[tag=melonFarmer] at @s if score @s timer matches 1.. run swing @s"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[tag=melonFarmer] at @s if score @s timer matches 30.. rotated ~ 0 run setblock ^ ^ ^1 air destroy"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[tag=melonFarmer] at @s if score @s timer matches 30.. rotated ~ 0 run scoreboard players reset @s timer"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[tag=melonFarmer] at @s if entity @e[type=item,distance=..2] run tp @e[type=item,distance=..2] ~ ~2 ~"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[tag=melonFarmer] at @s rotated ~ 0 if block ^ ^ ^1.5 hopper run tp @e[type=item,distance=..2] ^ ^1 ^1.5"
+      }
+    ],
+    "video": "https://www.youtube.com/embed/pg7D7oaFDBE"
+  },
+  {
     "id": "tntrun",
     "name": "TNTRun",
     "description": "TNTRun Using Only Commands!",
