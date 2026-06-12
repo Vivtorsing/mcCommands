@@ -1,5 +1,64 @@
 [
   {
+    "id": "spear_dispenser",
+    "name": "Spear Dispenser",
+    "description": "A dispenser that can pop out spears!",
+    "versions": {"26.1.2+": true},
+    "blocks": [
+      {
+        "type": "repeat",
+        "row": 1,
+        "command": "execute as @e[type=minecraft:armor_stand,tag=spearDispenser] at @s if block ~ ~-1 ~ minecraft:dispenser{Items:[{id:\"minecraft:diamond_spear\"}]} run summon minecraft:armor_stand ~-.2 ~-.6 ~-.05 {ShowArms:1,Pose:{RightArm:[0f,270f,270f]},equipment:{mainhand:{id:\"minecraft:diamond_spear\",count:1}},NoGravity:1,Tags:[\"spearDispenserSpear\"],Invisible:1,Marker:1}"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "execute as @e[type=minecraft:armor_stand,tag=spearDispenser] at @s if block ~ ~-1 ~ minecraft:dispenser{Items:[{id:\"minecraft:diamond_spear\"}]} run summon minecraft:armor_stand ~.05 ~-.6 ~-.17 {ShowArms:1,Pose:{RightArm:[0f,270f,270f]},Rotation:[90f,0f],equipment:{mainhand:{id:\"minecraft:diamond_spear\",count:1}},NoGravity:1,Tags:[\"spearDispenserSpear\"],Invisible:1,Marker:1}"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "execute as @e[type=minecraft:armor_stand,tag=spearDispenser] at @s if block ~ ~-1 ~ minecraft:dispenser{Items:[{id:\"minecraft:diamond_spear\"}]} run data merge entity @s {Invisible:1,Marker:1}"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "execute as @e[type=minecraft:armor_stand,tag=spearDispenser] at @s if block ~ ~-1 ~ minecraft:dispenser{Items:[{id:\"minecraft:diamond_spear\"}]} run data modify block ~ ~-1 ~ Items set value []"
+      },
+      {
+        "type": "repeat",
+        "row": 2,
+        "command": "execute positioned as @e[tag=spearDispenser] if block ~ ~-1 ~ minecraft:dispenser[triggered=false] as @e[tag=spearDispenserSpear,distance=..1] at @s if block ~ ~ ~ minecraft:dispenser run tp @s ~ ~-2 ~"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[tag=spearDispenser] at @s if block ~ ~-1 ~ minecraft:dispenser[triggered=true] if entity @e[tag=spearDispenserSpear,distance=..3] run damage @p[distance=..1] 1"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute positioned as @e[tag=spearDispenser] if block ~ ~-1 ~ minecraft:dispenser[triggered=true] positioned ~ ~-2 ~ as @e[tag=spearDispenserSpear,distance=..1] at @s run tp @s ~ ~2 ~"
+      },
+      {
+        "type": "repeat",
+        "row": 3,
+        "command": "execute positioned as @e[tag=spearDispenser] unless block ~ ~-1 ~ minecraft:dispenser as @e[tag=spearDispenserSpear,distance=..1] at @s run kill @s"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute positioned as @e[tag=spearDispenser] unless block ~ ~-1 ~ minecraft:dispenser positioned ~ ~-2 ~ as @e[tag=spearDispenserSpear,distance=..1] at @s run kill @s"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @e[tag=spearDispenser] at @s unless block ~ ~-1 ~ minecraft:dispenser run kill @s"
+      }
+    ],
+    "video": "https://www.youtube.com/embed/l3WZcuXeANo"
+  },
+  {
     "id": "mannequin_pumpkin_melon_farmer",
     "name": "Mannequin Pumpkin / Melon Farmer",
     "description": "Where you can have a mannequin farm your pumpkins and melons!",
