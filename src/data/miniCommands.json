@@ -1,5 +1,44 @@
 [
   {
+    "id": "id_pair_system",
+    "name": "Id Pair System",
+    "description": "A somewhat okay id pair system if you have less than 8 pairs!",
+    "versions": { "26.1.2+": true },
+    "steps": [
+      "Row 1 does not use id pair score.",
+      "Row 2 uses the id pair score but then only checks the nearest one.",
+      "Row 3 uses id the pair score but involved RNG due to random causing some pairs to have longer delays."
+    ],
+    "blocks": [
+      {
+        "type": "impulse",
+        "row": 1,
+        "command": "execute as @e[tag=mainStand] at @s if entity @e[tag=secondStand,limit=1,sort=nearest] run tp @e[tag=secondStand,limit=1,sort=nearest] ^ ^ ^1"
+      },
+      {
+        "type": "impulse",
+        "row": 2,
+        "command": "execute as @e[tag=mainStand] at @s if score @s x = @e[tag=secondStand,limit=1,sort=nearest] x run tp @e[tag=secondStand,limit=1,sort=nearest] ^ ^ ^1"
+      },
+      {
+        "type": "impulse",
+        "row": 3,
+        "command": "execute as @e[tag=mainStand,limit=1,sort=random] run tag @s add processingStand"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @e[tag=processingStand] at @s as @e[tag=secondStand] if score @s x = @e[tag=processingStand,limit=1] x run tp @s ^ ^ ^1"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "tag @e[tag=processingStand] remove processingStand"
+      }
+    ],
+    "video": "https://www.youtube.com/embed/A4uUoL9IGag"
+  },
+  {
     "id": "custom_death_messages",
     "name": "Custom Death Messages",
     "description": "Where you can create custom death messages!",
