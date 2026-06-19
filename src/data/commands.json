@@ -1,5 +1,49 @@
 [
   {
+    "id": "sulfur_cube_dynamic_light",
+    "name": "Sulfur Cube Dynamic Light",
+    "description": "Make your sulfur cube with glowing blocks inside glow!",
+    "versions": {"26.1.2-": false, "26.2+": true},
+    "blocks": [
+      {
+        "type": "repeat",
+        "row": 1,
+        "command": "execute as @e[type=minecraft:sulfur_cube,nbt={equipment:{body:{count:1,id:\"minecraft:glowstone\"}}}] at @s run tag @s add glowingSulfur"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "execute as @e[type=minecraft:sulfur_cube,nbt={equipment:{body:{count:1,id:\"minecraft:shroomlight\"}}}] at @s run tag @s add glowingSulfur"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "execute as @e[type=minecraft:sulfur_cube,nbt=!{equipment:{body:{count:1,id:\"minecraft:shroomlight\"}}},nbt=!{equipment:{body:{count:1,id:\"minecraft:glowstone\"}}}] at @s run tag @s remove glowingSulfur"
+      },
+      {
+        "type": "repeat",
+        "row": 2,
+        "command": "execute as @e[tag=glowingSulfur] at @s unless entity @e[tag=sulfurGlowingStand,distance=..1] run summon minecraft:armor_stand ~ ~ ~ {Tags:[\"sulfurGlowingStand\"],NoGravity:1,Marker:1,Invisible:1}"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[tag=sulfurGlowingStand] at @s if block ~ ~ ~ #minecraft:air run setblock ~ ~ ~ minecraft:light"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[tag=sulfurGlowingStand] at @s unless entity @e[tag=glowingSulfur,distance=..1] run fill ~ ~ ~ ~ ~ ~ air replace light"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[tag=sulfurGlowingStand] at @s unless entity @e[tag=glowingSulfur,distance=..1] run kill @s"
+      }
+    ],
+    "video": "https://www.youtube.com/embed/G54YVOWzWgo"
+  },
+  {
     "id": "spear_dispenser",
     "name": "Spear Dispenser",
     "description": "A dispenser that can pop out spears!",
