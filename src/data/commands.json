@@ -1,5 +1,194 @@
 [
   {
+    "id": "aim_trainer",
+    "name": "Aim Trainer",
+    "description": "Train your aim and this also might help with reaction time...",
+    "versions": {"26.1.2": true, "26.2+": true},
+    "blocks": [
+      {
+        "type": "impulse",
+        "row": 1,
+        "command": "scoreboard objectives add timer dummy"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "scoreboard objectives add var dummy"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "scoreboard objectives add amount dummy"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "scoreboard objectives add random dummy"
+      },
+      {
+        "type": "repeat",
+        "row": 2,
+        "command": "execute as @e[tag=aimTrainer] at @s if block ~ ~ ~ #minecraft:buttons[powered=true] run tag @s add aimTrainerStarted"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[tag=aimTrainerStarted] at @s run scoreboard players add @s timer 1"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[tag=aimTrainerStarted] at @s store result entity @s Rotation[0] float 1 run random value -180..180"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[tag=aimTrainerStarted] at @s store result entity @s Rotation[1] float 1 run random value -90..0"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[tag=aimTrainerStarted] at @s if score @s timer matches 0.. unless entity @e[tag=aimTarget] run scoreboard players add @s var 1"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[tag=aimTrainerStarted] at @s if score @s timer matches 0.. unless entity @e[tag=aimTarget] run summon minecraft:armor_stand ^ ^ ^3 {Tags:[\"aimTarget\"],NoGravity:1}"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[tag=aimTrainerStarted] at @s if score @s timer matches 600.. run tellraw @a [\"Your Score is: \",{\"score\":{\"name\":\"@s\",\"objective\":\"var\"}}]"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[tag=aimTrainerStarted] at @s if score @s timer matches 600.. run scoreboard players reset @s var"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[tag=aimTrainerStarted] at @s if score @s timer matches 600.. run tag @s remove aimTrainerStarted"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[tag=aimTrainer] at @s if score @s timer matches 600.. run scoreboard players reset @s timer"
+      },
+      {
+        "type": "repeat",
+        "row": 3,
+        "command": "execute as @e[tag=itemTrainer] at @s if block ~ ~ ~ #minecraft:buttons[powered=true] run tag @s add itemTrainerStarted"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @e[tag=itemTrainerStarted] at @s run scoreboard players add @s timer 1"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @a at @s if entity @e[tag=itemTrainerStarted,distance=..5] store result score @s amount run data get entity @s SelectedItem.id"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @e[tag=itemTrainerStarted] at @s store result score @s amount run data get entity @s equipment.head.id"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @e[tag=itemTrainerStarted] at @s if score @s amount = @p amount run scoreboard players add @s var 1"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @e[tag=itemTrainerStarted] at @s if score @s amount = @p amount run playsound minecraft:block.stone_button.click_on ambient @a ~ ~ ~ 10 1"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @e[tag=itemTrainerStarted] at @s if score @s amount = @p amount store result score @s random run random value 1..9"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @e[tag=itemTrainerStarted] at @s unless score @s random matches 0.. store result score @s random run random value 1..9"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @e[tag=itemTrainerStarted] at @s if score @s random matches 1 run item replace entity @s armor.head with minecraft:melon"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @e[tag=itemTrainerStarted] at @s if score @s random matches 2 run item replace entity @s armor.head with minecraft:sponge"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @e[tag=itemTrainerStarted] at @s if score @s random matches 3 run item replace entity @s armor.head with minecraft:pumpkin"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @e[tag=itemTrainerStarted] at @s if score @s random matches 4 run item replace entity @s armor.head with minecraft:red_concrete"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @e[tag=itemTrainerStarted] at @s if score @s random matches 5 run item replace entity @s armor.head with minecraft:pink_concrete"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @e[tag=itemTrainerStarted] at @s if score @s random matches 6 run item replace entity @s armor.head with minecraft:white_concrete"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @e[tag=itemTrainerStarted] at @s if score @s random matches 7 run item replace entity @s armor.head with minecraft:purple_concrete"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @e[tag=itemTrainerStarted] at @s if score @s random matches 8 run item replace entity @s armor.head with minecraft:magenta_concrete"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @e[tag=itemTrainerStarted] at @s if score @s random matches 9 run item replace entity @s armor.head with minecraft:light_blue_concrete"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @e[tag=itemTrainerStarted] at @s if score @s timer matches 600.. run tellraw @a [\"Your Item Score is: \",{\"score\":{\"name\":\"@s\",\"objective\":\"var\"}}]"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @e[tag=itemTrainerStarted] at @s if score @s timer matches 600.. run scoreboard players reset @s var"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @e[tag=itemTrainerStarted] at @s if score @s timer matches 600.. run tag @s remove itemTrainerStarted"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @e[tag=itemTrainer] at @s if score @s timer matches 600.. run scoreboard players reset @s random"
+      },
+      {
+        "type": "chain",
+        "row": 3,
+        "command": "execute as @e[tag=itemTrainer] at @s if score @s timer matches 600.. run scoreboard players reset @s timer"
+      }
+    ],
+    "video": "https://www.youtube.com/embed/--Pnm0QcyFQ"
+  },
+  {
     "id": "sulfur_cube_dynamic_light",
     "name": "Sulfur Cube Dynamic Light",
     "description": "Make your sulfur cube with glowing blocks inside glow!",
