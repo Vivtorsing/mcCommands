@@ -1,5 +1,59 @@
 [
   {
+    "id": "path_trail",
+    "name": "Path Trail",
+    "description": "Where you can leave a trail behind you!",
+    "versions": {"1.21.10+": true, "26.2+": true},
+    "blocks": [
+      {
+        "type": "impulse",
+        "row": 1,
+        "command": "scoreboard objectives add timer dummy"
+      },
+      {
+        "type": "repeat",
+        "row": 2,
+        "command": "execute as @a at @s unless block ~ ~-.1 ~ #air unless entity @e[tag=path,distance=..1.5] run summon minecraft:armor_stand ~ ~ ~ {Tags:[\"path\"],NoGravity:1,Marker:1,Invisible:1}"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[type=minecraft:armor_stand,tag=path] at @s unless entity @e[type=minecraft:block_display,distance=..0.5] run summon minecraft:block_display ~-.125 ~-.05 ~-.125 {transformation:{left_rotation:[0f,0f,0f,1f],right_rotation:[0f,0f,0f,1f],translation:[0f,0f,0f],scale:[.25f,.0625f,.25f]},block_state:{Name:\"minecraft:dirt_path\"},Tags:[\"pathBlock\"]}"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[type=minecraft:armor_stand,tag=path] at @s run scoreboard players add @s timer 1"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[type=minecraft:armor_stand,tag=path] at @s if score @s timer matches 200.. run kill @e[type=minecraft:block_display,tag=pathBlock,distance=..0.5,limit=1,sort=nearest]"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[type=minecraft:armor_stand,tag=path] at @s if score @s timer matches 200.. run kill @s"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[type=minecraft:armor_stand,tag=path] at @s if block ~ ~-.1 ~ #air run kill @e[type=minecraft:block_display,tag=pathBlock,distance=..0.5,limit=1,sort=nearest]"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[type=minecraft:armor_stand,tag=path] at @s if block ~ ~-.1 ~ #air run kill @s"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @e[type=minecraft:block_display,tag=pathBlock] at @s unless entity @e[type=minecraft:armor_stand,tag=path,distance=..0.5] run kill @s"
+      }
+    ],
+    "video": "https://www.youtube.com/embed/1R0j-Rm2P8I"
+  },
+  {
     "id": "aim_trainer",
     "name": "Aim Trainer",
     "description": "Train your aim and this also might help with reaction time...",
