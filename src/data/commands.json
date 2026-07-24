@@ -1,5 +1,174 @@
 [
   {
+    "id": "tp_without_delay",
+    "name": "TP Without Delay",
+    "description": "Tp Entities To Moving Players Without Delay",
+    "versions": {"1.21.10+": true, "26.2+": true},
+    "blocks": [
+      {
+        "type": "impulse",
+        "row": 1,
+        "command": "scoreboard objectives add playerXNew dummy"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "scoreboard objectives add playerXOld dummy"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "scoreboard objectives add targetX dummy"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "scoreboard objectives add const dummy"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "scoreboard players set #3 const 3"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "scoreboard objectives add playerZNew dummy"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "scoreboard objectives add playerZOld dummy"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "scoreboard objectives add targetZ dummy"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "scoreboard objectives add playerYNew dummy"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "scoreboard objectives add playerYOld dummy"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "scoreboard objectives add targetY dummy"
+      },
+      {
+        "type": "repeat",
+        "row": 2,
+        "command": "execute as @a at @s run scoreboard players operation @s playerXOld = @s playerXNew"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @a at @s store result score @s playerXNew run data get entity @s Pos[0] 1000"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @a at @s run scoreboard players operation @s targetX = @s playerXNew"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @a at @s run scoreboard players operation @s targetX -= @s playerXOld"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @a at @s run scoreboard players operation @s targetX *= #3 const"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @a at @s run scoreboard players operation @s targetX += @s playerXNew"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @a at @s run scoreboard players operation @s playerZOld = @s playerZNew"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @a at @s store result score @s playerZNew run data get entity @s Pos[2] 1000"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @a at @s run scoreboard players operation @s targetZ = @s playerZNew"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @a at @s run scoreboard players operation @s targetZ -= @s playerZOld"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @a at @s run scoreboard players operation @s targetZ *= #3 const"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @a at @s run scoreboard players operation @s targetZ += @s playerZNew"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @a at @s run scoreboard players operation @s playerYOld = @s playerYNew"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @a at @s store result score @s playerYNew run data get entity @s Pos[1] 1000"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @a at @s run scoreboard players operation @s targetY = @s playerYNew"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @a at @s run scoreboard players operation @s targetY -= @s playerYOld"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @a at @s run scoreboard players operation @s targetY *= #3 const"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @a at @s run scoreboard players operation @s targetY += @s playerYNew"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @a at @s store result entity @e[tag=centerPos,limit=1,sort=nearest] Pos[0] double 0.001 run scoreboard players get @s targetX"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @a at @s store result entity @e[tag=centerPos,limit=1,sort=nearest] Pos[2] double 0.001 run scoreboard players get @s targetZ"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "execute as @a at @s store result entity @e[tag=centerPos,limit=1,sort=nearest] Pos[1] double 0.001 run scoreboard players get @s targetY"
+      }
+    ],
+    "video": "https://www.youtube.com/embed/QEVSLmiQwEw"
+  },
+  {
     "id": "path_trail",
     "name": "Path Trail",
     "description": "Where you can leave a trail behind you!",
