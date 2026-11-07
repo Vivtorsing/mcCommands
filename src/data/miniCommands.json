@@ -1,5 +1,118 @@
 [
   {
+    "id": "shrunk_attributes",
+    "name": "Shrunk Attributes",
+    "description": "All the attributes to be an ant in Minecraft!",
+    "versions": { "26.2+": true },
+    "steps": [
+      "The first row is to reset",
+      "The second row is to shrink"
+    ],
+    "blocks": [
+      {
+        "type": "impulse",
+        "row": 1,
+        "command": "attribute @p minecraft:scale base reset"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "attribute @p minecraft:block_interaction_range base reset"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "attribute @p minecraft:entity_interaction_range base reset"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "attribute @p minecraft:movement_speed base reset"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "attribute @p minecraft:gravity base reset"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "attribute @p minecraft:safe_fall_distance base reset"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "attribute @p minecraft:jump_strength base reset"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "attribute @p minecraft:step_height base reset"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "attribute @p minecraft:fall_damage_multiplier base reset"
+      },
+      {
+        "type": "chain",
+        "row": 1,
+        "command": "attribute @p minecraft:air_drag_modifier base reset"
+      },
+      {
+        "type": "impulse",
+        "row": 2,
+        "command": "attribute @p minecraft:scale base set 0"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "attribute @p minecraft:block_interaction_range base set .28125"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "attribute @p minecraft:entity_interaction_range base set .1875"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "attribute @p minecraft:movement_speed base set .00625"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "attribute @p minecraft:gravity base set .005"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "attribute @p minecraft:safe_fall_distance base set .1875"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "attribute @p minecraft:jump_strength base set .03625"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "attribute @p minecraft:step_height base set .0375"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "attribute @p minecraft:fall_damage_multiplier base set 16"
+      },
+      {
+        "type": "chain",
+        "row": 2,
+        "command": "attribute @p minecraft:air_drag_modifier base set 16"
+      }
+    ],
+    "video": "https://www.youtube.com/embed/nh9Y8LIu2vg"
+  },
+  {
     "id": "id_pair_system",
     "name": "Id Pair System",
     "description": "A somewhat okay id pair system if you have less than 8 pairs!",
