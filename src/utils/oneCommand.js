@@ -30,6 +30,11 @@ export default function oneCommand(json) {
       const escapedFullCmd = fullCmd.replace(/\\/g, `\\\\`).replace(/"/g, `\\"`);
       setblockCommands.push(escapedFullCmd);
 
+      //kill all command blocks minecart that already ran
+      if(setblockCommands.length % 10 == 0) {
+        setblockCommands.push('kill @e[type=command_block_minecart,distance=..1]');
+      }
+
       zOffset -= 1;
     }
 
@@ -52,7 +57,8 @@ export default function oneCommand(json) {
 
   const summonStructure = {
     id: "falling_block",
-    BlockState: { Name: "activator_rail" },
+    //BlockState: { Name: "activator_rail" }, //26.2-
+    BlockState: { id: "activator_rail" }, //26.3+ required
     Time: 1,
     Passengers: [nested]
   };
